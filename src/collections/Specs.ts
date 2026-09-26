@@ -4,6 +4,7 @@ import { isPartnerUser, staffOnly } from '@/access'
 import { SLUG_PATTERN } from '@/fields/slug'
 import { revalidateAfterChange, revalidateAfterDelete } from '@/hooks/revalidate'
 import { SPEC_DATA_TYPES, SPEC_GROUP_ADMIN_LABELS, SPEC_GROUPS } from '@/lib/constants'
+import { requiredInDefaultLocale } from '@/fields/validators'
 
 const KEY_PATTERN = /^[a-z][a-z0-9_]*$/
 
@@ -188,7 +189,7 @@ export const Specs: CollectionConfig = {
                 typeof v === 'string' && /^[a-z0-9][a-z0-9-]*$/i.test(v) ? true : 'Letters, digits, hyphens.',
               admin: { width: '35%' },
             },
-            { name: 'label', type: 'text', required: true, localized: true, admin: { width: '65%' } },
+            { name: 'label', type: 'text', localized: true, validate: requiredInDefaultLocale, admin: { width: '65%' } },
           ],
         },
       ],

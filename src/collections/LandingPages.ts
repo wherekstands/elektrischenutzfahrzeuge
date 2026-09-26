@@ -4,6 +4,7 @@ import { isPartnerUser, staffOnly } from '@/access'
 import { faqsField } from '@/fields/faqs'
 import { seoFields } from '@/fields/seo'
 import { revalidateAfterChange, revalidateAfterDelete } from '@/hooks/revalidate'
+import { withLocale } from '@/hooks/withLocale'
 
 const idOf = (v: unknown) => (v && typeof v === 'object' ? (v as { id: number }).id : (v as number))
 
@@ -30,9 +31,12 @@ export const LandingPages: CollectionConfig = {
         const typeId = idOf(data.vehicleType ?? originalDoc?.vehicleType)
         const jobId = idOf(data.job ?? originalDoc?.job)
         if (typeId && jobId) {
-          // Sequential on purpose: queries inside one transaction share a connection.
-          const type = await req.payload.findByID({ collection: 'vehicle-types', id: typeId, depth: 0, locale: 'en', req })
-          const job = await req.payload.findByID({ collection: 'jobs', id: jobId, depth: 0, locale: 'en', req })
+          // English names for the admin title. Sequential on purpose: queries in one transaction share a
+          // connection. withLocale keeps the request's own locale (see hooks/withLocale.ts).
+          const [type, job] = await withLocale(req, 'en', async () => [
+            await req.payload.findByID({ collection: 'vehicle-types', id: typeId, depth: 0, locale: 'en', req }),
+            await req.payload.findByID({ collection: 'jobs', id: jobId, depth: 0, locale: 'en', req }),
+          ])
           data.internalTitle = `${type.name} × ${job.name}`
         }
         return data

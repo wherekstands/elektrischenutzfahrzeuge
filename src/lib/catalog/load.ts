@@ -404,7 +404,7 @@ export async function loadCatalog(locale: Locale, { drafts = false } = {}): Prom
       tiers: (pricing.tiers ?? []).map(
         (t): PricingTier => ({
           tier: t.tier as Tier,
-          name: t.name,
+          name: t.name || t.tier.charAt(0).toUpperCase() + t.tier.slice(1),
           pricePerModelYear: t.pricePerModelYear ?? null,
           highlight: Boolean(t.highlight),
           description: t.description ?? null,

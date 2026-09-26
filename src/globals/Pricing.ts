@@ -3,6 +3,7 @@ import type { GlobalConfig } from 'payload'
 import { isPartnerUser, staffOnly } from '@/access'
 import { revalidateGlobal } from '@/hooks/revalidate'
 import { TIERS } from '@/lib/constants'
+import { requiredInDefaultLocale } from '@/fields/validators'
 
 /** Partner tiers as shown on /for-manufacturers. Stripe price IDs live in environment variables. */
 export const Pricing: GlobalConfig = {
@@ -28,7 +29,7 @@ export const Pricing: GlobalConfig = {
               options: TIERS.map((v) => ({ value: v, label: v })),
               admin: { width: '25%' },
             },
-            { name: 'name', type: 'text', required: true, localized: true, admin: { width: '25%' } },
+            { name: 'name', type: 'text', localized: true, validate: requiredInDefaultLocale, admin: { width: '25%' } },
             {
               name: 'pricePerModelYear',
               type: 'number',

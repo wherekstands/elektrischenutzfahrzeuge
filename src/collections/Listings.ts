@@ -10,6 +10,7 @@ import { revalidateAfterChange, revalidateAfterDelete } from '@/hooks/revalidate
 import { DOCUMENT_KINDS, HIGHLIGHT_MAX_CHARS, STATUSES } from '@/lib/constants'
 import { pingIndexNow } from '@/lib/indexnow'
 import { normalizeSpecValues, type SpecRule } from '@/lib/specs/normalize'
+import { requiredInDefaultLocale } from '@/fields/validators'
 
 const idOf = (v: unknown): number | string | null =>
   v == null ? null : typeof v === 'object' ? ((v as { id: number | string }).id ?? null) : (v as number | string)
@@ -20,7 +21,7 @@ async function loadSpecRules(req: PayloadRequest): Promise<Map<string, SpecRule>
     limit: 0,
     pagination: false,
     depth: 0,
-    locale: 'en',
+    // No `locale` here: together with `req` it would switch the whole save to that locale.
     req,
   })
   return new Map(
@@ -289,7 +290,7 @@ export const Listings: CollectionConfig = {
                 {
                   type: 'row',
                   fields: [
-                    { name: 'title', type: 'text', required: true, localized: true, admin: { width: '50%' } },
+                    { name: 'title', type: 'text', localized: true, validate: requiredInDefaultLocale, admin: { width: '50%' } },
                     {
                       name: 'kind',
                       type: 'select',

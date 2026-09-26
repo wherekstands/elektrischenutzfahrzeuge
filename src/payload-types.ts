@@ -225,7 +225,7 @@ export interface Listing {
    */
   documents?:
     | {
-        title: string;
+        title?: string | null;
         kind: 'brochure' | 'datasheet' | 'pricelist' | 'manual' | 'certificate' | 'video' | 'other';
         language?: ('en' | 'de' | 'fr' | 'nl' | 'it' | 'es' | 'pl' | 'multi') | null;
         file?: (number | null) | Document;
@@ -635,7 +635,7 @@ export interface Spec {
   options?:
     | {
         value: string;
-        label: string;
+        label?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1777,7 +1777,7 @@ export interface Pricing {
   tiers?:
     | {
         tier: 'free' | 'starter' | 'pro';
-        name: string;
+        name?: string | null;
         /**
          * EUR net per listed model per year. 0 = free.
          */
