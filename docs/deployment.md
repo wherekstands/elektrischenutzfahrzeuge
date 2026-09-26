@@ -36,17 +36,23 @@ site does not use the Data API. In *Project Settings → Data API*, disable the 
 
 ## 2. First database setup
 
-From a machine with the repository (or let the first Vercel build run the migrations):
+Do this once per Supabase project, from a machine with the repository, **before** the first Vercel
+deployment (the build pre-renders pages from the data it finds):
 
 ```bash
-# .env pointing at the target project (DATABASE_URL + DATABASE_MIGRATE_URL + PAYLOAD_SECRET)
-pnpm migrate
-pnpm seed           # production: taxonomy, specs, reference listings, pages. NEVER seed:demo.
-pnpm seed:demo      # development project only: adds fictional demo partners and placements
+# .env pointing at the target project: DATABASE_URL, DATABASE_MIGRATE_URL, PAYLOAD_SECRET,
+# DATABASE_SSL=no-verify (or DATABASE_CA_CERT), SEED_ADMIN_EMAIL, SEED_ADMIN_PASSWORD
+pnpm migrate        # 1. create the tables
+pnpm seed           # 2a. production: taxonomy, specs, reference listings, pages. NEVER seed:demo.
+pnpm seed:demo      # 2b. development project only: the same plus fictional demo partners
 ```
 
-Create the owner account by opening `/admin` (the first user becomes admin) or set `SEED_ADMIN_EMAIL`
-and `SEED_ADMIN_PASSWORD` before seeding. The seed refuses `--fresh` in production.
+Order matters: migrations first, then the seed. Schema "push" only runs against a local database, so
+seeding a Supabase project never changes its tables (a push there would make the next migration stop at
+an interactive prompt). If you seed after a deployment, redeploy so static pages are rebuilt with data.
+
+Without `SEED_ADMIN_*` the first account created at `/admin` becomes admin. The seed refuses `--fresh`
+in production.
 
 ## 3. Vercel
 

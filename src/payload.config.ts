@@ -50,6 +50,16 @@ function poolSSL(connectionString: string) {
   return undefined
 }
 
+/** localhost / 127.0.0.1 / ::1 or a Unix socket: the developer's own database. */
+function isLocalDatabase(connectionString: string) {
+  try {
+    const host = new URL(connectionString).hostname
+    return host === '' || host === 'localhost' || host === '127.0.0.1' || host === '[::1]'
+  } catch {
+    return false
+  }
+}
+
 /** An explicit SSL config must not be overridden by `sslmode` in the URL (node-postgres merges it last). */
 function withoutSslMode(connectionString: string) {
   if (!process.env.DATABASE_SSL && !process.env.DATABASE_CA_CERT) return connectionString
@@ -178,8 +188,11 @@ export default buildConfig({
       max: Number(process.env.DATABASE_POOL_MAX || 5),
     },
     migrationDir: path.resolve(dirname, 'migrations'),
-    // Local development syncs the schema automatically; shared databases use migrations only.
-    push: process.env.PAYLOAD_DB_PUSH !== 'false' && process.env.NODE_ENV !== 'production',
+    // Only a local database syncs its schema automatically. Shared databases (Supabase) change through
+    // migrations only: a push there makes the next `payload migrate` stop at an interactive prompt.
+    push:
+      process.env.PAYLOAD_DB_PUSH === 'true' ||
+      (process.env.PAYLOAD_DB_PUSH !== 'false' && process.env.NODE_ENV !== 'production' && isLocalDatabase(rawConnectionString)),
   }),
   email,
   sharp,
