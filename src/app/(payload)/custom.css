@@ -1,0 +1,102 @@
+/* Admin customisations for ECV Base. Uses Payload's theme variables so it works in light and dark mode. */
+
+.ecv-intro {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--theme-elevation-100);
+  border-radius: 12px;
+  background: var(--theme-elevation-0);
+}
+.ecv-intro h2 { margin: 0 0 0.5rem; }
+.ecv-muted { color: var(--theme-elevation-500); }
+.ecv-stats { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
+.ecv-stat {
+  display: block;
+  min-width: 180px;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  background: var(--theme-elevation-50);
+  text-decoration: none;
+  color: inherit;
+}
+a.ecv-stat:hover { background: var(--theme-elevation-100); }
+.ecv-stat__value { font-size: 1.75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ecv-stat__label { font-size: 0.85rem; color: var(--theme-elevation-600); }
+
+.ecv-review-note {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--theme-elevation-600);
+  max-width: 260px;
+}
+
+.ecv-billing { margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: 10px; background: var(--theme-elevation-50); }
+.ecv-billing h4 { margin: 0 0 0.25rem; }
+.ecv-billing__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* Spec editor */
+.ecv-specs { display: flex; flex-direction: column; gap: 1.25rem; }
+.ecv-specs__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+.ecv-specs__bar { width: 260px; height: 6px; margin-top: 6px; border-radius: 99px; background: var(--theme-elevation-100); overflow: hidden; }
+.ecv-specs__bar span { display: block; height: 100%; background: var(--theme-success-500); }
+.ecv-specs__toggle { font-size: 0.85rem; display: flex; gap: 0.4rem; align-items: center; }
+.ecv-specs__group { border: 1px solid var(--theme-elevation-100); border-radius: 10px; padding: 1rem 1.25rem 1.25rem; margin: 0; }
+.ecv-specs__group--warn { border-color: var(--theme-warning-500); }
+.ecv-specs__group legend { font-weight: 700; padding: 0 0.4rem; }
+.ecv-specs__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem 1.25rem; }
+.ecv-specs__field { display: flex; flex-direction: column; gap: 0.35rem; }
+.ecv-specs__field.is-wide { grid-column: 1 / -1; }
+.ecv-specs__field.is-outside { opacity: 0.75; }
+.ecv-specs__field label { font-size: 0.85rem; font-weight: 600; display: flex; gap: 0.5rem; align-items: center; }
+.ecv-specs__field input:not([type='checkbox']):not([type='radio']),
+.ecv-specs__field select {
+  width: 100%;
+  height: 38px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: 6px;
+  background: var(--theme-input-bg, var(--theme-elevation-0));
+  color: var(--theme-text);
+  font: inherit;
+}
+.ecv-specs__num { display: flex; align-items: stretch; }
+.ecv-specs__num input { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+.ecv-specs__unit {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.6rem;
+  border: 1px solid var(--theme-elevation-150);
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+  background: var(--theme-elevation-50);
+  font-size: 0.8rem;
+  color: var(--theme-elevation-600);
+  white-space: nowrap;
+}
+.ecv-specs__chips, .ecv-specs__seg { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.ecv-chip {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: 99px;
+  font-weight: 500 !important;
+  cursor: pointer;
+}
+.ecv-chip input { position: absolute; opacity: 0; pointer-events: none; }
+.ecv-chip.is-on { background: var(--theme-elevation-800); color: var(--theme-elevation-0); border-color: var(--theme-elevation-800); }
+.ecv-specs__help { font-size: 0.78rem; color: var(--theme-elevation-500); }
+.ecv-specs__err { font-size: 0.78rem; color: var(--theme-error-500); }
+.ecv-specs__hint, .ecv-specs__loading { padding: 1rem; border-radius: 8px; background: var(--theme-elevation-50); }
+.ecv-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  background: var(--theme-success-100);
+  color: var(--theme-success-750, var(--theme-success-500));
+}
