@@ -7,7 +7,6 @@ import { href, pathFor } from '@/lib/urls'
  * Static and revalidated with the catalogue.
  */
 export const dynamic = 'force-static'
-export const dynamicParams = false
 
 export function generateStaticParams() {
   return PUBLIC_LOCALES.map((locale) => ({ locale }))

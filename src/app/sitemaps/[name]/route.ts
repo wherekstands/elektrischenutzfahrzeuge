@@ -1,7 +1,6 @@
 import { renderUrlset, SITEMAP_SECTIONS, type SitemapSection, sitemapEntries } from '@/lib/seo/sitemap'
 
 export const dynamic = 'force-static'
-export const dynamicParams = false
 
 export function generateStaticParams() {
   return SITEMAP_SECTIONS.map((s) => ({ name: `${s}.xml` }))

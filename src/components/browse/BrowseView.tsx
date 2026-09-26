@@ -153,7 +153,7 @@ export async function BrowseView({ catalog, scope, state, basePath, typeOptions 
   return (
     <div className="grid gap-8 lg:grid-cols-[264px_minmax(0,1fr)]">
       <aside aria-label={t('title')} className="lg:sticky lg:top-24 lg:max-h-[calc(100dvh-7rem)] lg:self-start lg:overflow-y-auto lg:pr-1 lg:[scrollbar-width:thin]">
-        <FiltersShell label={t('show')} closeLabel={t('reset')} showLabel={t('showResults', { count: total })} activeCount={activeCount}>
+        <FiltersShell label={t('show')} closeLabel={t('reset')} showLabel={t('showResults', { count: total })} activeCount={activeCount} stateKey={url(state)}>
           <div className="mb-1 flex items-center justify-between">
             <h2 className="text-[18px] font-bold">{t('title')}</h2>
             {(activeCount > 0 || state.q) && (

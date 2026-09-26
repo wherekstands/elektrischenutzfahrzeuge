@@ -54,6 +54,9 @@ jobs:
       # Build as if indexable so robots.txt and meta robots are tested in their production form.
       ALLOW_INDEXING: 'true'
       NEXT_TELEMETRY_DISABLED: '1'
+      # Seed admin, also used by the e2e publish test.
+      SEED_ADMIN_EMAIL: ci-admin@example.com
+      SEED_ADMIN_PASSWORD: ci-admin-password-1
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

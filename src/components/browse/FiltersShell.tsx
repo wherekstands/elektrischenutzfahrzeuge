@@ -1,7 +1,6 @@
 'use client'
 
 import { SlidersHorizontal, X } from 'lucide-react'
-import { usePathname, useSearchParams } from 'next/navigation'
 import { type ReactNode, useEffect, useState } from 'react'
 
 import { cn } from '@/lib/cn'
@@ -13,20 +12,21 @@ export function FiltersShell({
   closeLabel,
   showLabel,
   activeCount,
+  stateKey,
 }: {
   children: ReactNode
   label: string
   closeLabel: string
   showLabel: string
   activeCount: number
+  /** URL of the current filter state (from the server). A new state closes the drawer. */
+  stateKey: string
 }) {
-  const pathname = usePathname()
-  const search = useSearchParams()
-  // The drawer closes when the URL changes (a filter was applied); derived, not synced in an effect.
-  const location = `${pathname}?${search.toString()}`
+  // The drawer closes when a filter was applied (new state from the server); derived, not synced in an
+  // effect. Not useSearchParams(): that would opt the static hub pages out of server rendering.
   const [openAt, setOpenAt] = useState<string | null>(null)
-  const open = openAt === location
-  const setOpen = (next: boolean) => setOpenAt(next ? location : null)
+  const open = openAt === stateKey
+  const setOpen = (next: boolean) => setOpenAt(next ? stateKey : null)
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpenAt(null)

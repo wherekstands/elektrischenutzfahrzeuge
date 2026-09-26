@@ -40,7 +40,8 @@ const mono = localFont({
 export function generateStaticParams() {
   return PUBLIC_LOCALES.map((locale) => ({ locale }))
 }
-export const dynamicParams = false
+// No `dynamicParams = false`: unknown locales already 404 below, and with it Next.js cannot regenerate
+// pages after `revalidateTag(…, { expire: 0 })` (NoFallbackError → every page 404s after a publish).
 
 export const viewport: Viewport = {
   themeColor: [
