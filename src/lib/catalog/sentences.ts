@@ -1,11 +1,13 @@
 /**
  * Citable fact sentences generated from data (docs/03 §6): LLMs quote sentences better than tables.
+ * Message keys are relative to the `facts` namespace.
  * Example: "The Kia PV5 Cargo Long Range (small van) has a 71.2 kWh usable battery, a range of up to
  * 416 km, DC charging at up to 150 kW and a payload of up to 690 kg."
  */
 import type { Locale } from '../../i18n/config'
 import type { Catalog } from './catalog'
 import { formatDate, formatPrice, formatSpec, type ValueLabels } from './format'
+import { lcFirst } from '../text'
 import type { Listing } from './types'
 
 export type Translate = (key: string, values?: Record<string, string | number>) => string
@@ -69,31 +71,30 @@ export function factSentences(
     const formatted = formatSpec(spec, value, locale, labels)
     if (!formatted) continue
     clauses.push(
-      CLAUSE_KEYS.includes(key) && has(`facts.clause.${key}`)
-        ? t(`facts.clause.${key}`, { value: formatted })
-        : t('facts.clause.generic', { label: spec.label, value: formatted }),
+      CLAUSE_KEYS.includes(key) && has(`clause.${key}`)
+        ? t(`clause.${key}`, { value: formatted })
+        : t('clause.generic', { label: spec.label, value: formatted }),
     )
   }
   if (clauses.length) {
-    sentences.push(t('facts.lead', { title: listing.title, type: type.name, clauses: joinList(clauses, t('facts.and')) }))
+    sentences.push(t('lead', { title: listing.title, type: lcFirst(type.name, locale), clauses: joinList(clauses, t('and')) }))
   }
 
   // 2. Availability and price.
   const price = listing.specs.price_eur
+  const status = t(`status.${listing.availability}`)
   sentences.push(
-    t('facts.availability', {
-      title: listing.title,
-      availability: listing.availability,
-      price: typeof price === 'number' ? formatPrice(price, locale) : 'none',
-    }),
+    typeof price === 'number'
+      ? t('priceKnown', { status, price: formatPrice(price, locale) })
+      : t('priceUnknown', { status }),
   )
 
   // 3. Provenance.
   const brand = catalog.brandOf(listing)
   sentences.push(
     catalog.isVerified(listing)
-      ? t('facts.verified', { brand: brand.name, date: formatDate(listing.verifiedAt, locale) })
-      : t('facts.compiled', { date: formatDate(listing.updatedAt, locale) }),
+      ? t('verified', { brand: brand.name, date: formatDate(listing.verifiedAt, locale) })
+      : t('compiled', { date: formatDate(listing.updatedAt, locale) }),
   )
   return sentences
 }

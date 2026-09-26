@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Where } from 'payload'
 
 import { isPartnerUser, staffOnly } from '@/access'
 import { faqsField } from '@/fields/faqs'
@@ -36,7 +36,7 @@ export const Jobs: CollectionConfig = {
       name: 'parent',
       type: 'relationship',
       relationTo: 'jobs',
-      filterOptions: ({ id }) => ({ and: [{ parent: { exists: false } }, { id: { not_equals: id } }] }),
+      filterOptions: ({ id }) => ({ and: [{ parent: { exists: false } }, { id: { not_equals: id } }] }) as Where,
       admin: { position: 'sidebar', description: 'Empty = this is an area (level 1).' },
       validate: async (value: unknown, { req, id }: { req: import('payload').PayloadRequest; id?: string | number }) => {
         if (!value) return true

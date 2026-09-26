@@ -333,7 +333,7 @@ export async function loadCatalog(locale: Locale, { drafts = false } = {}): Prom
         .filter((x): x is ImageRef => Boolean(x))
         .map((img) => ({ ...img, alt: img.alt || title })),
       documents: (d.documents ?? [])
-        .map((doc, i) => {
+        .map((doc, i): Listing['documents'][number] | null => {
           const baseDoc = b?.documents?.[i]
           const file = docById.get(idOf(doc.file) ?? -1)
           const url = file?.url || doc.url

@@ -39,7 +39,11 @@ export function partnershipFromSubscription(sub: Stripe.Subscription) {
   const endTs = ended ? (sub.ended_at ?? periodEnd) : periodEnd
   return {
     tier: ended ? ('free' as Tier) : (tier ?? 'free'),
-    subscriptionStatus: ended ? 'canceled' : sub.status === 'trialing' ? 'trialing' : sub.status === 'past_due' ? 'past_due' : 'active',
+    subscriptionStatus: (ended ? 'canceled' : sub.status === 'trialing' ? 'trialing' : sub.status === 'past_due' ? 'past_due' : 'active') as
+      | 'canceled'
+      | 'trialing'
+      | 'past_due'
+      | 'active',
     validUntil: endTs ? new Date(endTs * 1000).toISOString() : null,
     stripeSubscriptionId: sub.id,
     stripeCustomerId: typeof sub.customer === 'string' ? sub.customer : sub.customer.id,

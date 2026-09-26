@@ -55,6 +55,12 @@ const list = (v: string | undefined) =>
     .map((s) => s.trim())
     .filter(Boolean)
 
+/** Comma-separated and/or repeated parameters (a plain HTML form submits repeated keys). */
+const getList = (params: Params, key: string): string[] => {
+  const raw = params instanceof URLSearchParams ? params.getAll(key) : ([] as string[]).concat(params[key] ?? [])
+  return [...new Set(raw.flatMap((v) => list(v)))]
+}
+
 const num = (v: string | undefined) => {
   if (v == null || v === '') return undefined
   const n = Number(v.replace(',', '.'))
@@ -77,10 +83,10 @@ export function filterParamNames(catalog: Catalog): Set<string> {
 export function parseFilters(params: Params, catalog: Catalog): FilterState {
   const state = emptyFilters()
   state.q = (getParam(params, 'q') ?? '').trim().slice(0, 120)
-  state.types = list(getParam(params, 'type')).filter((s) => catalog.typeBySlug.has(s))
-  state.jobs = list(getParam(params, 'job')).filter((s) => catalog.jobBySlug.has(s))
-  state.brands = list(getParam(params, 'brand')).filter((s) => catalog.brandBySlug.has(s))
-  state.availability = list(getParam(params, 'availability')).filter((s): s is Status =>
+  state.types = getList(params, 'type').filter((s) => catalog.typeBySlug.has(s))
+  state.jobs = getList(params, 'job').filter((s) => catalog.jobBySlug.has(s))
+  state.brands = getList(params, 'brand').filter((s) => catalog.brandBySlug.has(s))
+  state.availability = getList(params, 'availability').filter((s): s is Status =>
     (STATUSES as readonly string[]).includes(s),
   )
   state.confirmed = getParam(params, 'confirmed') === '1'
@@ -93,7 +99,7 @@ export function parseFilters(params: Params, catalog: Catalog): FilterState {
       if (min != null || max != null) state.specs[spec.key] = { ...(min != null && { min }), ...(max != null && { max }) }
     } else if (spec.dataType === 'select' || spec.dataType === 'multiselect') {
       const allowed = new Set(spec.options.map((o) => o.value))
-      const values = list(getParam(params, spec.urlKey)).filter((v) => allowed.has(v))
+      const values = getList(params, spec.urlKey).filter((v) => allowed.has(v))
       if (values.length) state.specs[spec.key] = values
     } else if (spec.dataType === 'boolean' || spec.dataType === 'feature') {
       if (getParam(params, spec.urlKey) === '1') state.specs[spec.key] = true

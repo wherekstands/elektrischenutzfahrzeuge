@@ -266,7 +266,20 @@
     "viewPhotos": "View photos",
     "mdTwin": "Markdown version",
     "addCompare": "Compare",
-    "type": "Vehicle type"
+    "type": "Vehicle type",
+    "mailSubject": "[ECV Base] {brand} {model}",
+    "mailBody": "Hello {name},\n\nI found the {title} on ECV Base ({url}) and would like to know more about configurations, delivery times and fleet pricing.\n\nBest regards",
+    "previewBanner": "Preview of unpublished changes.",
+    "exitPreview": "Exit preview",
+    "photos": "Photos",
+    "thumbnails": "Choose photo",
+    "phone": "Phone",
+    "email": "Email",
+    "region": "Region",
+    "sponsoredContact": "Partner listing",
+    "priceOnRequest": "Price on request",
+    "priceFrom": "From {price}",
+    "specsCount": "{filled} of {total} specs published"
   },
   "facts": {
     "lead": "The {title} ({type}) has {clauses}.",
@@ -299,9 +312,16 @@
       "water_tank_l": "a {value} water tank",
       "outreach_m": "an outreach of {value}"
     },
-    "availability": "{availability, select, on-sale {It is on sale in Europe} orders-open {Order books are open} announced {It has been announced for Europe} other {It has been discontinued}}{price, select, none {; the price is available on request.} other {, with list prices from {price} net.}}",
     "verified": "The data was confirmed by {brand} on {date}.",
-    "compiled": "Specifications are compiled from public manufacturer sources; last updated {date}."
+    "compiled": "Specifications are compiled from public manufacturer sources; last updated {date}.",
+    "status": {
+      "on-sale": "It is on sale in Europe",
+      "orders-open": "Order books are open",
+      "announced": "It has been announced for Europe",
+      "discontinued": "It has been discontinued"
+    },
+    "priceKnown": "{status}, with list prices from {price} net.",
+    "priceUnknown": "{status}; the price is available on request."
   },
   "compare": {
     "title": "Compare",
@@ -378,7 +398,7 @@
     "free": "€0",
     "from": "from {price}",
     "cta": "Get in touch",
-    "ctaSubject": "Partnership for {brand}",
+    "ctaSubject": "[ECV Base] Partnership enquiry",
     "portal": "Partner login",
     "tiersTitle": "Partnership options",
     "rankingNote": "Paid visibility is always labelled. Payment never changes specs, explicit sorting or filters.",

@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Where } from 'payload'
 
 import { isPartnerUser, staffOnly } from '@/access'
 import { faqsField } from '@/fields/faqs'
@@ -37,7 +37,7 @@ export const VehicleTypes: CollectionConfig = {
       name: 'parent',
       type: 'relationship',
       relationTo: 'vehicle-types',
-      filterOptions: ({ id }) => ({ and: [{ parent: { exists: false } }, { id: { not_equals: id } }] }),
+      filterOptions: ({ id }) => ({ and: [{ parent: { exists: false } }, { id: { not_equals: id } }] }) as Where,
       admin: {
         position: 'sidebar',
         description: 'Empty = this is a group (level 1). Set a group to make this a type (level 2).',
@@ -69,7 +69,7 @@ export const VehicleTypes: CollectionConfig = {
       type: 'relationship',
       relationTo: 'vehicle-types',
       hasMany: true,
-      filterOptions: ({ id }) => ({ and: [{ parent: { exists: false } }, { id: { not_equals: id } }] }),
+      filterOptions: ({ id }) => ({ and: [{ parent: { exists: false } }, { id: { not_equals: id } }] }) as Where,
       admin: {
         position: 'sidebar',
         condition: (data) => Boolean(data?.parent),

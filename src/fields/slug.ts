@@ -1,4 +1,4 @@
-import type { Field, FieldHook } from 'payload'
+import type { FieldHook, TextField } from 'payload'
 
 /** Lowercase ASCII with hyphens (docs/03 §1). Transliterates German umlauts and common accents. */
 export const slugify = (input: string): string =>
@@ -38,7 +38,7 @@ type SlugOptions = {
  * Slug field: generated from `from` on create when empty, then stable. Slugs never change silently;
  * editors can change them deliberately, and listing/brand/guide hooks record a redirect when they do.
  */
-export const slugField = ({ from, localized = false, unique = true, description }: SlugOptions): Field => {
+export const slugField = ({ from, localized = false, unique = true, description }: SlugOptions): TextField => {
   const sources = Array.isArray(from) ? from : [from]
   const generate: FieldHook = ({ value, data, originalDoc }) => {
     if (typeof value === 'string' && value.length > 0) return slugify(value)
