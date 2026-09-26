@@ -123,6 +123,8 @@ const email = process.env.SMTP_HOST
 export default buildConfig({
   admin: {
     user: Users.slug,
+    // Built-in avatar: the default (Gravatar) would send a hash of every admin's email to a third party.
+    avatar: 'default',
     importMap: { baseDir: path.resolve(dirname) },
     meta: {
       titleSuffix: ' · ECV Base admin',

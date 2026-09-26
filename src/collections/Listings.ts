@@ -4,6 +4,7 @@ import { isPartnerUser, isStaffUser, staffFieldOnly, staffOrOwnBrand } from '@/a
 import { seoFields } from '@/fields/seo'
 import { slugify, validateSlug } from '@/fields/slug'
 import { partnerDraftsOnly } from '@/hooks/partnerGuard'
+import { queuePartnerDraft } from '@/hooks/partnerReview'
 import { recordRedirect } from '@/hooks/redirects'
 import { revalidateAfterChange, revalidateAfterDelete } from '@/hooks/revalidate'
 import { DOCUMENT_KINDS, HIGHLIGHT_MAX_CHARS, STATUSES } from '@/lib/constants'
@@ -108,46 +109,15 @@ export const Listings: CollectionConfig = {
     ],
     afterChange: [
       revalidateAfterChange,
-      async ({ doc, previousDoc, req, operation }) => {
+      async ({ doc, previousDoc, req }) => {
         const published = doc._status === 'published'
         if (published && previousDoc?.slug && previousDoc.slug !== doc.slug && previousDoc._status === 'published') {
           await recordRedirect(req, `/vehicles/${previousDoc.slug}`, `/vehicles/${doc.slug}`, 'Listing slug changed')
         }
         if (published) void pingIndexNow([`/en/vehicles/${doc.slug}`])
-
-        // A partner saved a draft: put it into the review queue once.
-        if (isPartnerUser(req.user) && doc._status === 'draft') {
-          const open = await req.payload.count({
-            collection: 'change-requests',
-            where: {
-              and: [
-                { listing: { equals: doc.id } },
-                { kind: { equals: 'partner-edit' } },
-                { status: { in: ['new', 'in-review'] } },
-              ],
-            },
-            overrideAccess: true,
-            req,
-          })
-          if (open.totalDocs === 0) {
-            await req.payload.create({
-              collection: 'change-requests',
-              overrideAccess: true,
-              req,
-              data: {
-                kind: 'partner-edit',
-                status: 'new',
-                listing: doc.id,
-                brand: idOf(doc.brand) as number,
-                title: `${operation === 'create' ? 'New listing' : 'Edit'}: ${doc.title}`,
-                submitter: { name: req.user?.name || req.user?.email, email: req.user?.email },
-                message: 'A manufacturer partner saved a draft. Review the changes in the version history and publish.',
-              },
-            })
-          }
-        }
         return doc
       },
+      queuePartnerDraft('listing'),
     ],
     afterDelete: [revalidateAfterDelete],
   },

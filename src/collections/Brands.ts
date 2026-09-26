@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { isPartnerUser, isStaffUser, staffFieldOnly, staffOnly, staffOrOwnBrand } from '@/access'
 import { slugField } from '@/fields/slug'
 import { partnerDraftsOnly } from '@/hooks/partnerGuard'
+import { queuePartnerDraft } from '@/hooks/partnerReview'
 import { recordRedirect } from '@/hooks/redirects'
 import { revalidateAfterChange, revalidateAfterDelete } from '@/hooks/revalidate'
 import { TIERS } from '@/lib/constants'
@@ -35,6 +36,7 @@ export const Brands: CollectionConfig = {
         }
         return doc
       },
+      queuePartnerDraft('brand'),
     ],
     afterDelete: [revalidateAfterDelete],
   },

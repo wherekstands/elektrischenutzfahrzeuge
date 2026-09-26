@@ -204,6 +204,40 @@ describe('partner access', () => {
     expect(stored._status).toBe('draft')
   })
 
+  it('drafts its own brand profile into the review queue, without touching partnership fields', async () => {
+    const before = await payload.findByID({ collection: 'brands', id: brandA, overrideAccess: true })
+    await payload.update({
+      collection: 'brands',
+      id: brandA,
+      draft: true,
+      data: {
+        tagline: 'Drafted tagline',
+        partnership: {
+          tier: 'pro',
+          validUntil: '2030-01-01T00:00:00.000Z',
+          subscriptionStatus: 'manual',
+          boostInRecommended: !before.partnership.boostInRecommended,
+        },
+      },
+      ...asPartner,
+    })
+    const draft = await payload.findByID({ collection: 'brands', id: brandA, draft: true, overrideAccess: true })
+    expect(draft.tagline).toBe('Drafted tagline')
+    // Partnership and billing fields are staff-only: the partner's values are ignored.
+    expect(draft.partnership).toEqual(before.partnership)
+    const live = await payload.findByID({ collection: 'brands', id: brandA, overrideAccess: true })
+    expect(live.tagline ?? null).toBeNull()
+    const queue = await payload.count({
+      collection: 'change-requests',
+      where: { brand: { equals: brandA }, listing: { exists: false }, kind: { equals: 'partner-edit' } },
+      overrideAccess: true,
+    })
+    expect(queue.totalDocs).toBe(1)
+    await expect(
+      payload.update({ collection: 'brands', id: brandB, draft: true, data: { tagline: 'x' }, ...asPartner }),
+    ).rejects.toThrow()
+  })
+
   it('cannot delete listings', async () => {
     await expect(payload.delete({ collection: 'listings', id: listingA.id, ...asPartner })).rejects.toThrow()
   })
