@@ -16,8 +16,9 @@ import type {
 } from '@/payload-types'
 
 import { DEFAULT_LOCALE, type Locale } from '../../i18n/config'
-import { SPEC_GROUPS, VERIFICATION_VALID_DAYS, type Illustration, type Tier } from '../constants'
+import { SPEC_GROUPS, type Illustration, type Tier } from '../constants'
 import type { SpecValues } from '../specs/normalize'
+import { partnershipState, startOfToday } from './partnership'
 import type {
   Brand,
   CatalogData,
@@ -113,26 +114,6 @@ function toImage(doc: MediaDoc | undefined, fallbackAlt?: string | null): ImageR
     sizes,
   }
 }
-
-const startOfToday = () => {
-  const d = new Date()
-  d.setUTCHours(0, 0, 0, 0)
-  return d
-}
-
-/** Is a paid partnership in force today? */
-export function partnershipState(p: BrandDoc['partnership'] | undefined, today = startOfToday()) {
-  const tier = (p?.tier ?? 'free') as Tier
-  if (tier === 'free') return { tier: 'free' as Tier, active: false }
-  const statusOk = ['active', 'trialing', 'past_due', 'manual'].includes(p?.subscriptionStatus ?? 'none')
-  const until = p?.validUntil ? new Date(p.validUntil) : null
-  const dateOk = until ? until.getTime() >= today.getTime() : p?.subscriptionStatus === 'manual'
-  const active = statusOk && dateOk
-  return { tier: active ? tier : ('free' as Tier), active }
-}
-
-export const isVerificationValid = (verifiedAt: string | null, today = new Date()) =>
-  Boolean(verifiedAt) && today.getTime() - new Date(verifiedAt!).getTime() <= VERIFICATION_VALID_DAYS * 86400000
 
 /**
  * Build the catalogue for one locale. `drafts: true` (preview only, never cached) returns the latest

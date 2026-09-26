@@ -1,9 +1,15 @@
-import type { Endpoint, PayloadRequest } from 'payload'
+import type { Endpoint, Payload, PayloadRequest } from 'payload'
 import type Stripe from 'stripe'
 
 import { isPartnerUser, isStaffUser, partnerBrandId } from '@/access'
 import type { Tier } from '@/lib/constants'
-import { getStripe, partnershipFromSubscription, priceIdForTier, stripeEnabled } from '@/lib/stripe'
+import {
+  getStripe,
+  isLiveSubscriptionStatus,
+  partnershipFromSubscription,
+  priceIdForTier,
+  stripeEnabled,
+} from '@/lib/stripe'
 
 const json = (body: unknown, status = 200) => Response.json(body, { status })
 
@@ -36,11 +42,20 @@ function adminUrl(req: PayloadRequest, brandId: number | string, query: string) 
   return `${origin}/admin/collections/brands/${brandId}?${query}`
 }
 
-async function updateBrandFromSubscription(req: PayloadRequest, sub: Stripe.Subscription) {
+/**
+ * Apply a subscription to its brand (webhooks and staff sync). Always pass the *current* subscription
+ * (retrieved from Stripe), not an event snapshot: events can arrive late and out of order.
+ * Returns what happened, for logs and tests.
+ */
+export async function syncBrandSubscription(
+  payload: Payload,
+  sub: Stripe.Subscription,
+  req?: PayloadRequest,
+): Promise<'updated' | 'ignored-stale' | 'no-brand'> {
   const data = partnershipFromSubscription(sub)
   let brandId: string | number | undefined = sub.metadata?.brandId
   if (!brandId) {
-    const found = await req.payload.find({
+    const found = await payload.find({
       collection: 'brands',
       where: { 'partnership.stripeCustomerId': { equals: data.stripeCustomerId } },
       limit: 1,
@@ -51,17 +66,29 @@ async function updateBrandFromSubscription(req: PayloadRequest, sub: Stripe.Subs
     brandId = found.docs[0]?.id
   }
   if (!brandId) {
-    req.payload.logger.warn(`Stripe subscription ${sub.id} has no matching brand`)
-    return
+    payload.logger.warn(`Stripe subscription ${sub.id} has no matching brand`)
+    return 'no-brand'
   }
-  const brand = await req.payload.findByID({ collection: 'brands', id: brandId, depth: 0, overrideAccess: true, req })
-  await req.payload.update({
+  const brand = await payload.findByID({ collection: 'brands', id: brandId, depth: 0, overrideAccess: true, req })
+  const current = brand.partnership
+  // A late event about an old subscription must not overwrite the brand's newer, live one.
+  if (
+    current?.stripeSubscriptionId &&
+    current.stripeSubscriptionId !== sub.id &&
+    isLiveSubscriptionStatus(current.subscriptionStatus) &&
+    !isLiveSubscriptionStatus(data.subscriptionStatus)
+  ) {
+    payload.logger.info(`Ignoring subscription ${sub.id} (${sub.status}); brand ${brandId} has ${current.stripeSubscriptionId}`)
+    return 'ignored-stale'
+  }
+  await payload.update({
     collection: 'brands',
     id: brandId,
     overrideAccess: true,
     req,
-    data: { partnership: { ...(brand.partnership ?? {}), ...data } },
+    data: { partnership: { ...(current ?? {}), ...data } },
   })
+  return 'updated'
 }
 
 export const billingEndpoints: Endpoint[] = [
@@ -80,6 +107,10 @@ export const billingEndpoints: Endpoint[] = [
 
       const stripe = getStripe()
       const brand = await req.payload.findByID({ collection: 'brands', id: brandId, depth: 0, overrideAccess: true, req })
+      // One subscription per brand: plan changes and cancellations go through the billing portal.
+      if (brand.partnership?.stripeSubscriptionId && isLiveSubscriptionStatus(brand.partnership.subscriptionStatus)) {
+        return json({ error: 'This brand already has a subscription. Use "Manage billing" to change it.' }, 409)
+      }
       let customer = brand.partnership?.stripeCustomerId || undefined
       if (!customer) {
         const created = await stripe.customers.create({
@@ -162,7 +193,7 @@ export const billingEndpoints: Endpoint[] = [
       if (item && item.quantity !== quantity) {
         await stripe.subscriptionItems.update(item.id, { quantity, proration_behavior: 'none' })
       }
-      await updateBrandFromSubscription(req, await stripe.subscriptions.retrieve(subId))
+      await syncBrandSubscription(req.payload, await stripe.subscriptions.retrieve(subId), req)
       return json({ quantity })
     },
   },
@@ -185,17 +216,18 @@ export const billingEndpoints: Endpoint[] = [
         case 'checkout.session.completed': {
           const session = event.data.object
           if (session.subscription) {
-            const sub = await stripe.subscriptions.retrieve(
-              typeof session.subscription === 'string' ? session.subscription : session.subscription.id,
-            )
-            await updateBrandFromSubscription(req, sub)
+            const id = typeof session.subscription === 'string' ? session.subscription : session.subscription.id
+            await syncBrandSubscription(req.payload, await stripe.subscriptions.retrieve(id), req)
           }
           break
         }
         case 'customer.subscription.created':
         case 'customer.subscription.updated':
         case 'customer.subscription.deleted':
-          await updateBrandFromSubscription(req, event.data.object)
+        case 'customer.subscription.paused':
+        case 'customer.subscription.resumed':
+          // Re-read the subscription: the event payload may be older than the current state.
+          await syncBrandSubscription(req.payload, await stripe.subscriptions.retrieve(event.data.object.id), req)
           break
         default:
           break
