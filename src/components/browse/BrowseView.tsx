@@ -202,7 +202,7 @@ export async function BrowseView({ catalog, scope, state, basePath, typeOptions 
           <div className="mt-4 flex flex-wrap items-center gap-2" role="group" aria-label={t('quick')}>
             <span className="text-[12.5px] text-muted">{t('quick')}</span>
             {chips.map((c) => (
-              <a key={c.id} href={url(c.state)} rel="nofollow" aria-pressed={c.active} className={cn('chip', c.active && 'is-active')}>
+              <a key={c.id} href={url(c.state)} rel="nofollow" aria-current={c.active ? 'true' : undefined} className={cn('chip', c.active && 'is-active')}>
                 {c.label}
                 {!c.active && <span className="num text-[11.5px] text-faint">{c.count}</span>}
               </a>

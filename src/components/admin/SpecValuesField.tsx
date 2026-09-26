@@ -22,6 +22,8 @@ type SpecDoc = {
   max?: number | null
 }
 
+type Profile = { keys: Set<string>; keyFigures: string[]; typeName: string }
+
 type TypeDoc = {
   id: number
   name: string
@@ -51,7 +53,9 @@ export function SpecValuesField({ path }: { path: string }) {
   const vehicleTypeId = useFormFields(([fields]) => idOf(fields.vehicleType?.value))
   const locale = useLocale()
   const [specs, setSpecs] = useState<SpecDoc[] | null>(null)
-  const [profile, setProfile] = useState<{ keys: Set<string>; keyFigures: string[]; typeName: string } | null>(null)
+  const [loaded, setLoaded] = useState<{ typeId: number; profile: Profile } | null>(null)
+  // Only the profile of the currently selected type counts (derived, so switching types never shows stale specs).
+  const profile = vehicleTypeId != null && loaded?.typeId === vehicleTypeId ? loaded.profile : null
   const [showAll, setShowAll] = useState(false)
   const values: Values = useMemo(() => (value && typeof value === 'object' ? value : {}), [value])
 
@@ -62,13 +66,11 @@ export function SpecValuesField({ path }: { path: string }) {
   }, [locale.code])
 
   useEffect(() => {
-    if (!vehicleTypeId || !specs) {
-      setProfile(null)
-      return
-    }
+    if (!vehicleTypeId || !specs) return
+    let cancelled = false
     ;(async () => {
       const type = await getJSON<TypeDoc>(`/api/vehicle-types/${vehicleTypeId}?depth=0&locale=${locale.code}`)
-      if (!type) return
+      if (!type || cancelled) return
       const parent = type.parent
         ? await getJSON<TypeDoc>(`/api/vehicle-types/${idOf(type.parent)}?depth=0&locale=${locale.code}`)
         : null
@@ -81,8 +83,15 @@ export function SpecValuesField({ path }: { path: string }) {
       const figureRefs = type.keyFigures?.length ? type.keyFigures : (parent?.keyFigures ?? [])
       const keyFigures = figureRefs.map((r) => byId.get(idOf(r))?.key).filter(Boolean) as string[]
       keyFigures.forEach((k) => keys.add(k))
-      setProfile({ keys, keyFigures, typeName: parent ? `${parent.name} › ${type.name}` : type.name })
+      if (cancelled) return
+      setLoaded({
+        typeId: vehicleTypeId,
+        profile: { keys, keyFigures, typeName: parent ? `${parent.name} › ${type.name}` : type.name },
+      })
     })()
+    return () => {
+      cancelled = true
+    }
   }, [vehicleTypeId, specs, locale.code])
 
   const update = (key: string, next: unknown) => {
@@ -175,9 +184,12 @@ function SpecInput({
 }) {
   const id = `spec-${spec.key}`
   const [draft, setDraft] = useState<string>(value == null ? '' : String(value))
-  useEffect(() => {
+  // Reset the text when the stored value changes from outside (React: adjust state during render).
+  const [synced, setSynced] = useState(value)
+  if (synced !== value) {
+    setSynced(value)
     setDraft(value == null ? '' : String(value))
-  }, [value])
+  }
 
   const numberInvalid = spec.dataType === 'number' && draft !== '' && parseNumber(draft) == null
   const outOfRange =

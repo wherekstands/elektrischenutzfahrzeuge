@@ -11,16 +11,19 @@ import { cn } from '@/lib/cn'
  * only toggles visibility, closes on Escape, outside click and navigation.
  */
 export function NavDropdown({ label, children, wide = false }: { label: string; children: ReactNode; wide?: boolean }) {
-  const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  // Remember where the menu was opened: navigating elsewhere closes it without an effect.
+  const [openAt, setOpenAt] = useState<string | null>(null)
+  const open = openAt === pathname
+  const setOpen = (next: boolean | ((o: boolean) => boolean)) =>
+    setOpenAt(() => ((typeof next === 'function' ? next(open) : next) ? pathname : null))
   const ref = useRef<HTMLDivElement>(null)
   const id = useId()
-  const pathname = usePathname()
 
-  useEffect(() => setOpen(false), [pathname])
   useEffect(() => {
     if (!open) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
-    const onClick = (e: MouseEvent) => ref.current && !ref.current.contains(e.target as Node) && setOpen(false)
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpenAt(null)
+    const onClick = (e: MouseEvent) => ref.current && !ref.current.contains(e.target as Node) && setOpenAt(null)
     document.addEventListener('keydown', onKey)
     document.addEventListener('mousedown', onClick)
     return () => {

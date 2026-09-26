@@ -5,12 +5,14 @@ import { usePathname } from 'next/navigation'
 import { type ReactNode, useEffect, useState } from 'react'
 
 export function MobileMenu({ openLabel, closeLabel, children }: { openLabel: string; closeLabel: string; children: ReactNode }) {
-  const [open, setOpen] = useState(false)
   const pathname = usePathname()
-  useEffect(() => setOpen(false), [pathname])
+  // Remember where the menu was opened: navigating elsewhere closes it without an effect.
+  const [openAt, setOpenAt] = useState<string | null>(null)
+  const open = openAt === pathname
+  const setOpen = (next: boolean) => setOpenAt(next ? pathname : null)
   useEffect(() => {
     document.documentElement.style.overflow = open ? 'hidden' : ''
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpenAt(null)
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [open])

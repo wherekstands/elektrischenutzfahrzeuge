@@ -23,7 +23,8 @@
     "format": "prettier --write .",
     "test": "pnpm run test:unit",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:int": "vitest run --config vitest.int.config.mts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.90.2",
@@ -61,7 +62,6 @@
     "tailwindcss": "4.3.3",
     "tsx": "4.23.15",
     "typescript": "6.0.3",
-    "vite-tsconfig-paths": "6.1.1",
     "vitest": "5.0.2"
   },
   "engines": {

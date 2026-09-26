@@ -3,9 +3,13 @@
 import { Link2, Trash2 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
-import { type ReactNode, useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useState, useSyncExternalStore } from 'react'
 
 import { useStoredList } from '@/components/client/store'
+
+const noop = () => () => {}
+/** False during SSR and hydration, true afterwards (the stored list is only readable in the browser). */
+const useHydrated = () => useSyncExternalStore(noop, () => true, () => false)
 
 /**
  * The saved list lives in localStorage; the page renders the ids from the URL (shareable).
@@ -16,14 +20,13 @@ export function SavedSync({ hasIds, children }: { hasIds: boolean; children?: Re
   const { items } = useStoredList('saved')
   const router = useRouter()
   const pathname = usePathname()
-  const [checked, setChecked] = useState(false)
+  const hydrated = useHydrated()
+  const target = !hasIds && items.length ? `${pathname}?ids=${items.map((i) => i.slug).join(',')}` : null
   useEffect(() => {
-    if (!hasIds && items.length) router.replace(`${pathname}?ids=${items.map((i) => i.slug).join(',')}`)
-    setChecked(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasIds, items.length])
+    if (target) router.replace(target)
+  }, [target, router])
   if (hasIds) return null
-  if (!checked || items.length) return <p className="text-muted">{t('loading')}</p>
+  if (!hydrated || items.length) return <p className="text-muted">{t('loading')}</p>
   return <>{children}</>
 }
 

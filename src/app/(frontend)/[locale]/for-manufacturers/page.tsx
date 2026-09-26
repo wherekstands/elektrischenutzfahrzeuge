@@ -54,6 +54,8 @@ export default async function ForManufacturers({ params }: Props) {
               {t('cta')}
             </a>
           )}
+          {/* The admin is a separate app (own root layout): a full page load is intended. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/admin" className="btn btn-secondary" rel="nofollow">
             <LogIn size={16} aria-hidden />
             {t('portal')}

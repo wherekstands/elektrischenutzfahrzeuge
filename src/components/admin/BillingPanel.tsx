@@ -31,7 +31,7 @@ export function BillingPanel() {
     setBusy(key)
     const res = await post(path, body)
     setBusy(null)
-    if (res.url) window.location.href = res.url
+    if (res.url) window.location.assign(res.url)
     else if (res.quantity != null) toast.success(`Subscription set to ${res.quantity} models.`)
     else toast.error(res.error || 'Something went wrong')
   }

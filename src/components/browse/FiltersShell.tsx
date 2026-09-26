@@ -20,13 +20,16 @@ export function FiltersShell({
   showLabel: string
   activeCount: number
 }) {
-  const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const search = useSearchParams()
-  useEffect(() => setOpen(false), [pathname, search])
+  // The drawer closes when the URL changes (a filter was applied); derived, not synced in an effect.
+  const location = `${pathname}?${search.toString()}`
+  const [openAt, setOpenAt] = useState<string | null>(null)
+  const open = openAt === location
+  const setOpen = (next: boolean) => setOpenAt(next ? location : null)
   useEffect(() => {
     if (!open) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpenAt(null)
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [open])
