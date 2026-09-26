@@ -1,0 +1,56 @@
+/* Design tokens of the PROTOTYPE (reference/prototype.html): a starting point, not a requirement.
+   The Phase 1 design work is expected to improve on them.
+   Light is the default. Dark applies when the visitor picks it ([data-theme="dark"]) or the OS prefers dark
+   (unless the visitor picked light). Map these into Tailwind v4 via @theme. Keep the names stable. */
+:root{
+  color-scheme: light;
+  --bg:#F6F7F9; --surface:#FFFFFF; --surface-2:#F1F3F6; --surface-3:#E8EBF0; --glass:rgba(255,255,255,.78);
+  --ink:#0D1421; --ink-2:#2A3342; --muted:#5E6878; --faint:#8C95A3;
+  --line:#E6E9EE; --line-strong:#D3D8E0;
+  --accent:#2B59C3; --accent-hover:#2149A8; --accent-soft:#EBF0FC; --accent-ink:#FFFFFF;
+  --amber:#F5A524; --amber-soft:#FFF4DE; --amber-ink:#4D3200;
+  --good:#0B8F63; --good-soft:#E2F5EC; --warn:#A8690F; --warn-soft:#FDF1DC; --bad:#D92D20; --bad-soft:#FDECEA;
+  --illo-a:#EDF1F7; --illo-b:#F8FAFC; --illo-floor:#E6EAF1; --illo-glass-a:#2E3E55; --illo-glass-b:#5E7391;
+  --sh-1:0 1px 2px rgba(13,20,33,.05);
+  --sh-2:0 6px 16px -4px rgba(13,20,33,.10),0 2px 4px -2px rgba(13,20,33,.06);
+  --sh-3:0 24px 48px -16px rgba(13,20,33,.22);
+  --r:18px; --r-md:12px; --r-sm:9px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+  color-scheme: dark;
+  --bg:#0B0F16; --surface:#131923; --surface-2:#1A212D; --surface-3:#222B39; --glass:rgba(19,25,35,.78);
+  --ink:#EEF2F8; --ink-2:#CDD5E1; --muted:#9AA5B5; --faint:#6D7889;
+  --line:#232C3A; --line-strong:#313C4D;
+  --accent:#86A8FF; --accent-hover:#A3BDFF; --accent-soft:#1C2842; --accent-ink:#0B0F16;
+  --amber:#F7B84B; --amber-soft:#3A2D12; --amber-ink:#241800;
+  --good:#4FCB98; --good-soft:#12301F; --warn:#E6A94E; --warn-soft:#352812; --bad:#FF8A80; --bad-soft:#3A1C1A;
+  --illo-a:#1A2230; --illo-b:#141B26; --illo-floor:#1E2735; --illo-glass-a:#0E1520; --illo-glass-b:#33455E;
+  --sh-1:0 1px 2px rgba(0,0,0,.3);
+  --sh-2:0 8px 20px -6px rgba(0,0,0,.45);
+  --sh-3:0 24px 48px -16px rgba(0,0,0,.6);
+}
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0B0F16; --surface:#131923; --surface-2:#1A212D; --surface-3:#222B39; --glass:rgba(19,25,35,.78);
+  --ink:#EEF2F8; --ink-2:#CDD5E1; --muted:#9AA5B5; --faint:#6D7889;
+  --line:#232C3A; --line-strong:#313C4D;
+  --accent:#86A8FF; --accent-hover:#A3BDFF; --accent-soft:#1C2842; --accent-ink:#0B0F16;
+  --amber:#F7B84B; --amber-soft:#3A2D12; --amber-ink:#241800;
+  --good:#4FCB98; --good-soft:#12301F; --warn:#E6A94E; --warn-soft:#352812; --bad:#FF8A80; --bad-soft:#3A1C1A;
+  --illo-a:#1A2230; --illo-b:#141B26; --illo-floor:#1E2735; --illo-glass-a:#0E1520; --illo-glass-b:#33455E;
+  --sh-1:0 1px 2px rgba(0,0,0,.3);
+  --sh-2:0 8px 20px -6px rgba(0,0,0,.45);
+  --sh-3:0 24px 48px -16px rgba(0,0,0,.6);
+}
+
+/* Radii: --r 18px (cards, panels) · --r-md 12px (boxes) · --r-sm 9px (inputs) · 999px (pills, chips, buttons)
+   Motion: --ease; 200-450 ms; fadeUp on view change and on result cards (35 ms stagger); always respect prefers-reduced-motion
+   Type scale (px): page h1 24-30 (clamp) · section h2 21-22 · card title 17 · body 15 · small 13-13.5 · eyebrow 11-12 uppercase +.07em
+   Numbers: mono font with tabular-nums; units as a smaller muted <small> after the value
+   Fonts: Bricolage Grotesque (display), Geist (body), Geist Mono (numbers) - self-host via next/font */

@@ -1,0 +1,4308 @@
+{
+ "schema": "efleet-register/2",
+ "updatedAt": "2026-09-26T12:00:00Z",
+ "notice": "Specs are indicative, compiled from manufacturer and trade-press figures (Sept 2026). Always confirm with the manufacturer.",
+ "categories": [
+  {
+   "id": "vans",
+   "name": "Vans",
+   "parentId": null,
+   "icon": "van",
+   "description": "Panel vans and crew vans up to 4.25 t",
+   "order": 0
+  },
+  {
+   "id": "van-small",
+   "name": "Small vans",
+   "parentId": "vans",
+   "icon": null,
+   "description": "",
+   "order": 1
+  },
+  {
+   "id": "van-mid",
+   "name": "Mid-size vans",
+   "parentId": "vans",
+   "icon": null,
+   "description": "",
+   "order": 2
+  },
+  {
+   "id": "van-large",
+   "name": "Large vans",
+   "parentId": "vans",
+   "icon": null,
+   "description": "",
+   "order": 3
+  },
+  {
+   "id": "pickups",
+   "name": "Pickups & off-road",
+   "parentId": null,
+   "icon": "pickup",
+   "description": "Pickups and utility side-by-sides",
+   "order": 4
+  },
+  {
+   "id": "pickup",
+   "name": "Pickups",
+   "parentId": "pickups",
+   "icon": null,
+   "description": "",
+   "order": 5
+  },
+  {
+   "id": "utv",
+   "name": "UTVs / side-by-sides",
+   "parentId": "pickups",
+   "icon": "utv",
+   "description": "",
+   "order": 6
+  },
+  {
+   "id": "light",
+   "name": "Light electric & last-mile",
+   "parentId": null,
+   "icon": "micro",
+   "description": "Cargo bikes and light utility vehicles",
+   "order": 7
+  },
+  {
+   "id": "cargo-bikes",
+   "name": "Cargo bikes",
+   "parentId": "light",
+   "icon": "bike",
+   "description": "",
+   "order": 8
+  },
+  {
+   "id": "light-utility",
+   "name": "Light utility vehicles",
+   "parentId": "light",
+   "icon": "micro",
+   "description": "",
+   "order": 9
+  },
+  {
+   "id": "trucks",
+   "name": "Trucks",
+   "parentId": null,
+   "icon": "truck",
+   "description": "Rigid trucks and tractor units",
+   "order": 10
+  },
+  {
+   "id": "truck-light",
+   "name": "Light trucks (up to 8.5 t)",
+   "parentId": "trucks",
+   "icon": null,
+   "description": "",
+   "order": 11
+  },
+  {
+   "id": "truck-medium",
+   "name": "Medium rigids (8.5–18 t)",
+   "parentId": "trucks",
+   "icon": null,
+   "description": "",
+   "order": 12
+  },
+  {
+   "id": "truck-heavy",
+   "name": "Heavy rigids (18 t+)",
+   "parentId": "trucks",
+   "icon": null,
+   "description": "",
+   "order": 13
+  },
+  {
+   "id": "truck-tractor",
+   "name": "Tractor units",
+   "parentId": "trucks",
+   "icon": "tractor",
+   "description": "Semi-trailer tractors, up to 40–44 t GCW",
+   "order": 14
+  },
+  {
+   "id": "buses",
+   "name": "Buses & coaches",
+   "parentId": null,
+   "icon": "bus",
+   "description": "Minibuses, city buses, articulated buses and coaches",
+   "order": 15
+  },
+  {
+   "id": "bus-mini",
+   "name": "Minibuses & midibuses",
+   "parentId": "buses",
+   "icon": null,
+   "description": "",
+   "order": 16
+  },
+  {
+   "id": "bus-city",
+   "name": "City buses (12 m)",
+   "parentId": "buses",
+   "icon": null,
+   "description": "",
+   "order": 17
+  },
+  {
+   "id": "bus-artic",
+   "name": "Articulated buses (18 m+)",
+   "parentId": "buses",
+   "icon": null,
+   "description": "",
+   "order": 18
+  },
+  {
+   "id": "bus-coach",
+   "name": "Intercity & coaches",
+   "parentId": "buses",
+   "icon": null,
+   "description": "",
+   "order": 19
+  },
+  {
+   "id": "municipal",
+   "name": "Municipal & utility machines",
+   "parentId": null,
+   "icon": "sweeper",
+   "description": "Implement carriers and compact sweepers",
+   "order": 20
+  },
+  {
+   "id": "carriers",
+   "name": "Multi-purpose transporters",
+   "parentId": "municipal",
+   "icon": "carrier",
+   "description": "",
+   "order": 21
+  },
+  {
+   "id": "sweepers",
+   "name": "Compact sweepers",
+   "parentId": "municipal",
+   "icon": "sweeper",
+   "description": "",
+   "order": 22
+  },
+  {
+   "id": "construction",
+   "name": "Construction machinery",
+   "parentId": null,
+   "icon": "excavator",
+   "description": "Excavators, loaders, telehandlers, dumpers and more",
+   "order": 23
+  },
+  {
+   "id": "excavators",
+   "name": "Excavators",
+   "parentId": "construction",
+   "icon": "excavator",
+   "description": "",
+   "order": 24
+  },
+  {
+   "id": "loaders",
+   "name": "Wheel & compact loaders",
+   "parentId": "construction",
+   "icon": "loader",
+   "description": "",
+   "order": 25
+  },
+  {
+   "id": "telehandlers",
+   "name": "Telehandlers",
+   "parentId": "construction",
+   "icon": "telehandler",
+   "description": "",
+   "order": 26
+  },
+  {
+   "id": "dumpers",
+   "name": "Dumpers",
+   "parentId": "construction",
+   "icon": "dumper",
+   "description": "",
+   "order": 27
+  },
+  {
+   "id": "rollers",
+   "name": "Rollers & compactors",
+   "parentId": "construction",
+   "icon": "loader",
+   "description": "",
+   "order": 28
+  },
+  {
+   "id": "platforms",
+   "name": "Aerial work platforms",
+   "parentId": "construction",
+   "icon": "telehandler",
+   "description": "",
+   "order": 29
+  },
+  {
+   "id": "agri",
+   "name": "Agricultural & grounds",
+   "parentId": null,
+   "icon": "agtractor",
+   "description": "Tractors, yard loaders and mowers",
+   "order": 30
+  },
+  {
+   "id": "ag-tractors",
+   "name": "Tractors",
+   "parentId": "agri",
+   "icon": "agtractor",
+   "description": "",
+   "order": 31
+  },
+  {
+   "id": "yard-loaders",
+   "name": "Farm & yard loaders",
+   "parentId": "agri",
+   "icon": "loader",
+   "description": "",
+   "order": 32
+  },
+  {
+   "id": "slope-mowers",
+   "name": "Slope & remote-controlled mowers",
+   "parentId": "agri",
+   "icon": "mower",
+   "description": "",
+   "order": 33
+  },
+  {
+   "id": "ride-mowers",
+   "name": "Ride-on mowers & grounds care",
+   "parentId": "agri",
+   "icon": "mower",
+   "description": "",
+   "order": 34
+  },
+  {
+   "id": "industrial",
+   "name": "Industrial, terminal & airport",
+   "parentId": null,
+   "icon": "forklift",
+   "description": "Terminal tractors, forklifts and ground support",
+   "order": 35
+  },
+  {
+   "id": "terminal",
+   "name": "Terminal tractors",
+   "parentId": "industrial",
+   "icon": "yard",
+   "description": "",
+   "order": 36
+  },
+  {
+   "id": "forklifts",
+   "name": "Forklifts",
+   "parentId": "industrial",
+   "icon": "forklift",
+   "description": "",
+   "order": 37
+  },
+  {
+   "id": "tow-tractors",
+   "name": "Tow & baggage tractors",
+   "parentId": "industrial",
+   "icon": "tug",
+   "description": "",
+   "order": 38
+  },
+  {
+   "id": "gse",
+   "name": "Airport ground support",
+   "parentId": "industrial",
+   "icon": "tug",
+   "description": "",
+   "order": 39
+  }
+ ],
+ "applications": [
+  {
+   "id": "goods",
+   "name": "Goods transport & logistics",
+   "parentId": null,
+   "icon": "truck",
+   "description": "",
+   "order": 0
+  },
+  {
+   "id": "lastmile",
+   "name": "Last-mile & parcel",
+   "parentId": "goods",
+   "icon": null,
+   "description": "",
+   "order": 1
+  },
+  {
+   "id": "urban-dist",
+   "name": "Urban distribution",
+   "parentId": "goods",
+   "icon": null,
+   "description": "",
+   "order": 2
+  },
+  {
+   "id": "regional",
+   "name": "Regional distribution",
+   "parentId": "goods",
+   "icon": null,
+   "description": "",
+   "order": 3
+  },
+  {
+   "id": "longhaul",
+   "name": "Long-haul",
+   "parentId": "goods",
+   "icon": null,
+   "description": "",
+   "order": 4
+  },
+  {
+   "id": "temp",
+   "name": "Temperature-controlled",
+   "parentId": "goods",
+   "icon": null,
+   "description": "",
+   "order": 5
+  },
+  {
+   "id": "port",
+   "name": "Port & yard",
+   "parentId": "goods",
+   "icon": null,
+   "description": "",
+   "order": 6
+  },
+  {
+   "id": "warehouse",
+   "name": "Warehousing & intralogistics",
+   "parentId": "goods",
+   "icon": null,
+   "description": "",
+   "order": 7
+  },
+  {
+   "id": "passenger",
+   "name": "Passenger transport",
+   "parentId": null,
+   "icon": "bus",
+   "description": "",
+   "order": 8
+  },
+  {
+   "id": "urban-pt",
+   "name": "Urban public transport",
+   "parentId": "passenger",
+   "icon": null,
+   "description": "",
+   "order": 9
+  },
+  {
+   "id": "intercity",
+   "name": "Regional & intercity",
+   "parentId": "passenger",
+   "icon": null,
+   "description": "",
+   "order": 10
+  },
+  {
+   "id": "coach",
+   "name": "Coach & tourism",
+   "parentId": "passenger",
+   "icon": null,
+   "description": "",
+   "order": 11
+  },
+  {
+   "id": "shuttle",
+   "name": "Shuttles & on-demand",
+   "parentId": "passenger",
+   "icon": null,
+   "description": "",
+   "order": 12
+  },
+  {
+   "id": "constr",
+   "name": "Construction",
+   "parentId": null,
+   "icon": "excavator",
+   "description": "",
+   "order": 13
+  },
+  {
+   "id": "earthmoving",
+   "name": "Earthmoving",
+   "parentId": "constr",
+   "icon": null,
+   "description": "",
+   "order": 14
+  },
+  {
+   "id": "material",
+   "name": "Material handling",
+   "parentId": "constr",
+   "icon": null,
+   "description": "",
+   "order": 15
+  },
+  {
+   "id": "innercity",
+   "name": "Inner-city & indoor sites",
+   "parentId": "constr",
+   "icon": null,
+   "description": "",
+   "order": 16
+  },
+  {
+   "id": "roadbuild",
+   "name": "Road construction",
+   "parentId": "constr",
+   "icon": null,
+   "description": "",
+   "order": 17
+  },
+  {
+   "id": "civil",
+   "name": "Utility & civil works",
+   "parentId": "constr",
+   "icon": null,
+   "description": "",
+   "order": 18
+  },
+  {
+   "id": "muni",
+   "name": "Municipal services",
+   "parentId": null,
+   "icon": "sweeper",
+   "description": "",
+   "order": 19
+  },
+  {
+   "id": "waste",
+   "name": "Waste & recycling",
+   "parentId": "muni",
+   "icon": null,
+   "description": "",
+   "order": 20
+  },
+  {
+   "id": "streetclean",
+   "name": "Street cleaning",
+   "parentId": "muni",
+   "icon": null,
+   "description": "",
+   "order": 21
+  },
+  {
+   "id": "winter",
+   "name": "Winter service",
+   "parentId": "muni",
+   "icon": null,
+   "description": "",
+   "order": 22
+  },
+  {
+   "id": "parks",
+   "name": "Parks & green spaces",
+   "parentId": "muni",
+   "icon": null,
+   "description": "",
+   "order": 23
+  },
+  {
+   "id": "roadmaint",
+   "name": "Road & infrastructure maintenance",
+   "parentId": "muni",
+   "icon": null,
+   "description": "",
+   "order": 24
+  },
+  {
+   "id": "agrifor",
+   "name": "Agriculture & forestry",
+   "parentId": null,
+   "icon": "agtractor",
+   "description": "",
+   "order": 25
+  },
+  {
+   "id": "arable",
+   "name": "Arable farming",
+   "parentId": "agrifor",
+   "icon": null,
+   "description": "",
+   "order": 26
+  },
+  {
+   "id": "farmyard",
+   "name": "Livestock & farmyard",
+   "parentId": "agrifor",
+   "icon": null,
+   "description": "",
+   "order": 27
+  },
+  {
+   "id": "vine",
+   "name": "Viticulture & orchards",
+   "parentId": "agrifor",
+   "icon": null,
+   "description": "",
+   "order": 28
+  },
+  {
+   "id": "slopes",
+   "name": "Landscaping & slopes",
+   "parentId": "agrifor",
+   "icon": null,
+   "description": "",
+   "order": 29
+  },
+  {
+   "id": "forestry",
+   "name": "Forestry",
+   "parentId": "agrifor",
+   "icon": null,
+   "description": "",
+   "order": 30
+  },
+  {
+   "id": "trades",
+   "name": "Trades & services",
+   "parentId": null,
+   "icon": "van",
+   "description": "",
+   "order": 31
+  },
+  {
+   "id": "trade",
+   "name": "Trades & installation",
+   "parentId": "trades",
+   "icon": null,
+   "description": "",
+   "order": 32
+  },
+  {
+   "id": "service",
+   "name": "Service fleets",
+   "parentId": "trades",
+   "icon": null,
+   "description": "",
+   "order": 33
+  },
+  {
+   "id": "rental",
+   "name": "Rental",
+   "parentId": "trades",
+   "icon": null,
+   "description": "",
+   "order": 34
+  },
+  {
+   "id": "specialops",
+   "name": "Special operations",
+   "parentId": null,
+   "icon": "tug",
+   "description": "",
+   "order": 35
+  },
+  {
+   "id": "airport",
+   "name": "Airports & ground handling",
+   "parentId": "specialops",
+   "icon": null,
+   "description": "",
+   "order": 36
+  },
+  {
+   "id": "fire",
+   "name": "Fire & rescue",
+   "parentId": "specialops",
+   "icon": null,
+   "description": "",
+   "order": 37
+  },
+  {
+   "id": "industrialsite",
+   "name": "Industrial sites",
+   "parentId": "specialops",
+   "icon": null,
+   "description": "",
+   "order": 38
+  }
+ ],
+ "attributes": [
+  {
+   "id": "battery_kwh",
+   "name": "Battery (usable)",
+   "type": "number",
+   "unit": "kWh",
+   "group": "Energy & charging",
+   "filterable": true,
+   "card": true,
+   "better": "high",
+   "compare": true,
+   "appliesTo": [],
+   "order": 0
+  },
+  {
+   "id": "range_km",
+   "name": "Range",
+   "type": "number",
+   "unit": "km",
+   "group": "Energy & charging",
+   "filterable": true,
+   "card": true,
+   "better": "high",
+   "appliesTo": [
+    "vans",
+    "pickups",
+    "light",
+    "trucks",
+    "buses"
+   ],
+   "help": "WLTP for vans and pickups; manufacturer figure for trucks and buses",
+   "compare": true,
+   "order": 1
+  },
+  {
+   "id": "runtime_h",
+   "name": "Runtime",
+   "type": "number",
+   "unit": "h",
+   "group": "Energy & charging",
+   "filterable": true,
+   "card": true,
+   "better": "high",
+   "appliesTo": [
+    "municipal",
+    "construction",
+    "agri",
+    "industrial"
+   ],
+   "help": "Manufacturer figure for typical duty; heavy work shortens it",
+   "compare": true,
+   "order": 2
+  },
+  {
+   "id": "dc_kw",
+   "name": "DC charging (max)",
+   "type": "number",
+   "unit": "kW",
+   "group": "Energy & charging",
+   "filterable": true,
+   "better": "high",
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 3
+  },
+  {
+   "id": "ac_kw",
+   "name": "AC charging",
+   "type": "number",
+   "unit": "kW",
+   "group": "Energy & charging",
+   "better": "high",
+   "filterable": false,
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 4
+  },
+  {
+   "id": "charging",
+   "name": "Charging interfaces",
+   "type": "multiselect",
+   "group": "Energy & charging",
+   "filterable": true,
+   "options": [
+    {
+     "id": "ccs2",
+     "label": "CCS2"
+    },
+    {
+     "id": "mcs",
+     "label": "MCS (megawatt)"
+    },
+    {
+     "id": "type2",
+     "label": "Type 2 AC"
+    },
+    {
+     "id": "panto",
+     "label": "Pantograph"
+    },
+    {
+     "id": "swap",
+     "label": "Battery swap"
+    },
+    {
+     "id": "socket",
+     "label": "Industrial / 230 V socket"
+    }
+   ],
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 5
+  },
+  {
+   "id": "voltage",
+   "name": "System voltage",
+   "type": "select",
+   "group": "Energy & charging",
+   "filterable": true,
+   "options": [
+    {
+     "id": "v48",
+     "label": "Low voltage (≤96 V)"
+    },
+    {
+     "id": "v400",
+     "label": "400 V"
+    },
+    {
+     "id": "v800",
+     "label": "800 V"
+    }
+   ],
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 6
+  },
+  {
+   "id": "chemistry",
+   "name": "Cell chemistry",
+   "type": "select",
+   "group": "Energy & charging",
+   "filterable": true,
+   "options": [
+    {
+     "id": "lfp",
+     "label": "LFP"
+    },
+    {
+     "id": "nmc",
+     "label": "NMC"
+    },
+    {
+     "id": "lto",
+     "label": "LTO"
+    }
+   ],
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 7
+  },
+  {
+   "id": "power_kw",
+   "name": "Motor power",
+   "type": "number",
+   "unit": "kW",
+   "group": "Drivetrain",
+   "filterable": true,
+   "better": "high",
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 8
+  },
+  {
+   "id": "drive",
+   "name": "Drive / axle",
+   "type": "select",
+   "group": "Drivetrain",
+   "filterable": true,
+   "options": [
+    {
+     "id": "fwd",
+     "label": "FWD"
+    },
+    {
+     "id": "rwd",
+     "label": "RWD"
+    },
+    {
+     "id": "awd",
+     "label": "AWD / 4WD"
+    },
+    {
+     "id": "4x2",
+     "label": "4x2"
+    },
+    {
+     "id": "6x2",
+     "label": "6x2"
+    },
+    {
+     "id": "6x4",
+     "label": "6x4"
+    },
+    {
+     "id": "tracks",
+     "label": "Tracks"
+    }
+   ],
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 9
+  },
+  {
+   "id": "top_speed",
+   "name": "Top speed",
+   "type": "number",
+   "unit": "km/h",
+   "group": "Drivetrain",
+   "filterable": true,
+   "better": "high",
+   "appliesTo": [
+    "municipal",
+    "construction",
+    "agri",
+    "industrial",
+    "light",
+    "pickups"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 10
+  },
+  {
+   "id": "gvw_t",
+   "name": "GVW / GCW (max)",
+   "type": "number",
+   "unit": "t",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "help": "Gross vehicle weight; gross combination weight for tractor units",
+   "appliesTo": [
+    "vans",
+    "pickups",
+    "light",
+    "trucks",
+    "buses",
+    "municipal"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 11
+  },
+  {
+   "id": "payload_kg",
+   "name": "Payload (max)",
+   "type": "number",
+   "unit": "kg",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "card": true,
+   "better": "high",
+   "appliesTo": [
+    "vans",
+    "pickups",
+    "light",
+    "trucks",
+    "municipal",
+    "construction"
+   ],
+   "compare": true,
+   "order": 12
+  },
+  {
+   "id": "passengers",
+   "name": "Passenger capacity",
+   "type": "number",
+   "unit": "pax",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "card": true,
+   "better": "high",
+   "appliesTo": [
+    "buses"
+   ],
+   "compare": true,
+   "order": 13
+  },
+  {
+   "id": "op_weight_kg",
+   "name": "Operating weight",
+   "type": "number",
+   "unit": "kg",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "card": true,
+   "appliesTo": [
+    "construction",
+    "agri"
+   ],
+   "compare": true,
+   "order": 14
+  },
+  {
+   "id": "lift_kg",
+   "name": "Lift capacity",
+   "type": "number",
+   "unit": "kg",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "card": true,
+   "better": "high",
+   "appliesTo": [
+    "construction",
+    "agri",
+    "industrial"
+   ],
+   "compare": true,
+   "order": 15
+  },
+  {
+   "id": "lift_height_m",
+   "name": "Lift height",
+   "type": "number",
+   "unit": "m",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "better": "high",
+   "appliesTo": [
+    "construction",
+    "agri",
+    "industrial"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 16
+  },
+  {
+   "id": "dig_depth_m",
+   "name": "Max dig depth",
+   "type": "number",
+   "unit": "m",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "better": "high",
+   "appliesTo": [
+    "construction"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 17
+  },
+  {
+   "id": "towing_kg",
+   "name": "Towing capacity",
+   "type": "number",
+   "unit": "kg",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "better": "high",
+   "appliesTo": [
+    "pickups",
+    "vans",
+    "industrial",
+    "agri"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 18
+  },
+  {
+   "id": "cargo_m3",
+   "name": "Load volume (max)",
+   "type": "number",
+   "unit": "m³",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "better": "high",
+   "appliesTo": [
+    "vans",
+    "light"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 19
+  },
+  {
+   "id": "hopper_m3",
+   "name": "Hopper volume",
+   "type": "number",
+   "unit": "m³",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "card": true,
+   "better": "high",
+   "appliesTo": [
+    "municipal"
+   ],
+   "compare": true,
+   "order": 20
+  },
+  {
+   "id": "work_width_m",
+   "name": "Working width",
+   "type": "number",
+   "unit": "m",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "better": "high",
+   "appliesTo": [
+    "municipal",
+    "agri"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 21
+  },
+  {
+   "id": "max_slope_deg",
+   "name": "Max slope",
+   "type": "number",
+   "unit": "°",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "better": "high",
+   "appliesTo": [
+    "agri",
+    "construction"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 22
+  },
+  {
+   "id": "length_m",
+   "name": "Length",
+   "type": "number",
+   "unit": "m",
+   "group": "Weights & capacity",
+   "filterable": true,
+   "appliesTo": [
+    "buses"
+   ],
+   "card": false,
+   "compare": true,
+   "order": 23
+  },
+  {
+   "id": "heat_pump",
+   "name": "Heat pump",
+   "type": "feature",
+   "group": "Energy & charging",
+   "filterable": true,
+   "card": false,
+   "compare": true,
+   "appliesTo": [
+    "vans",
+    "pickups",
+    "light",
+    "trucks",
+    "buses"
+   ],
+   "order": 24
+  },
+  {
+   "id": "v2x",
+   "name": "Bidirectional charging (V2L / V2G)",
+   "type": "feature",
+   "group": "Energy & charging",
+   "filterable": true,
+   "card": false,
+   "compare": true,
+   "order": 25
+  },
+  {
+   "id": "eu_class",
+   "name": "EU vehicle class",
+   "type": "select",
+   "group": "Operation",
+   "filterable": true,
+   "help": "Registration class; non-road machines are not type-approved for public roads",
+   "options": [
+    {
+     "id": "N1",
+     "label": "N1 · goods ≤3.5 t"
+    },
+    {
+     "id": "N2",
+     "label": "N2 · goods 3.5–12 t"
+    },
+    {
+     "id": "N3",
+     "label": "N3 · goods >12 t"
+    },
+    {
+     "id": "M3",
+     "label": "M3 · bus >5 t"
+    },
+    {
+     "id": "T",
+     "label": "T · agricultural tractor"
+    },
+    {
+     "id": "SPM",
+     "label": "Non-road / self-propelled machine"
+    }
+   ],
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 26
+  },
+  {
+   "id": "operation",
+   "name": "Operation",
+   "type": "multiselect",
+   "group": "Operation",
+   "filterable": true,
+   "options": [
+    {
+     "id": "onboard",
+     "label": "Driver on board"
+    },
+    {
+     "id": "remote",
+     "label": "Remote-controlled"
+    },
+    {
+     "id": "autonomous",
+     "label": "Autonomous-ready"
+    }
+   ],
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 27
+  },
+  {
+   "id": "body",
+   "name": "Body & implements",
+   "type": "multiselect",
+   "group": "Operation",
+   "filterable": true,
+   "options": [
+    {
+     "id": "panel",
+     "label": "Panel van"
+    },
+    {
+     "id": "crew",
+     "label": "Crew van"
+    },
+    {
+     "id": "chassis",
+     "label": "Chassis cab"
+    },
+    {
+     "id": "box",
+     "label": "Box body"
+    },
+    {
+     "id": "tipper",
+     "label": "Tipper"
+    },
+    {
+     "id": "fridge",
+     "label": "Refrigerated"
+    },
+    {
+     "id": "refuse",
+     "label": "Refuse compactor"
+    },
+    {
+     "id": "flatbed",
+     "label": "Flatbed"
+    },
+    {
+     "id": "pickupbed",
+     "label": "Pickup bed"
+    },
+    {
+     "id": "passenger",
+     "label": "Passenger"
+    },
+    {
+     "id": "fifth",
+     "label": "Fifth wheel"
+    },
+    {
+     "id": "sweeper",
+     "label": "Sweeping unit"
+    },
+    {
+     "id": "plough",
+     "label": "Snow plough"
+    },
+    {
+     "id": "spreader",
+     "label": "Winter spreader"
+    },
+    {
+     "id": "mower",
+     "label": "Mower"
+    },
+    {
+     "id": "bucket",
+     "label": "Bucket"
+    },
+    {
+     "id": "forks",
+     "label": "Forks / pallet forks"
+    },
+    {
+     "id": "hitch",
+     "label": "Three-point hitch / PTO"
+    }
+   ],
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 28
+  },
+  {
+   "id": "licence",
+   "name": "Driving licence",
+   "type": "select",
+   "group": "Operation",
+   "compare": true,
+   "help": "EU licence category typically needed for the heaviest variant",
+   "options": [
+    {
+     "id": "B",
+     "label": "B"
+    },
+    {
+     "id": "C1",
+     "label": "C1"
+    },
+    {
+     "id": "C",
+     "label": "C"
+    },
+    {
+     "id": "CE",
+     "label": "CE"
+    },
+    {
+     "id": "D",
+     "label": "D"
+    },
+    {
+     "id": "none",
+     "label": "Not road-registered"
+    }
+   ],
+   "filterable": false,
+   "card": false,
+   "appliesTo": [],
+   "order": 29
+  },
+  {
+   "id": "price_eur",
+   "name": "Price from (net)",
+   "type": "number",
+   "unit": "€",
+   "group": "Commercial",
+   "filterable": true,
+   "better": "low",
+   "help": "Net list price in Germany where published",
+   "card": false,
+   "compare": true,
+   "appliesTo": [],
+   "order": 30
+  }
+ ],
+ "listings": [
+  {
+   "id": "renault-kangoo-etech",
+   "brand": "Renault",
+   "name": "Kangoo Van E-Tech Electric",
+   "categoryId": "van-small",
+   "status": "on-sale",
+   "summary": "Compact city van with an optional 22 kW onboard charger and sliding side doors on both sides.",
+   "url": "https://www.renault.de/nutzfahrzeuge/kangoo-van-e-tech-elektro.html",
+   "values": {
+    "battery_kwh": 45,
+    "range_km": 300,
+    "dc_kw": 80,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "power_kw": 90,
+    "drive": "fwd",
+    "payload_kg": 600,
+    "cargo_m3": 3.9,
+    "licence": "B",
+    "body": [
+     "panel",
+     "crew"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "lastmile",
+    "trade",
+    "service"
+   ],
+   "family": "Kangoo Van E-Tech Electric",
+   "facts": [
+    "Sliding side doors on both sides",
+    "Optional 22 kW AC onboard charger",
+    "Available as panel van and crew van"
+   ]
+  },
+  {
+   "id": "peugeot-e-partner",
+   "brand": "Peugeot",
+   "name": "E-Partner",
+   "categoryId": "van-small",
+   "status": "on-sale",
+   "summary": "Stellantis compact van, shared with Citroën ë-Berlingo, Opel Combo Electric and Fiat E-Doblò.",
+   "url": "https://www.peugeot.de/modelle/unsere-modelle/partner-elektro.html",
+   "values": {
+    "battery_kwh": 50,
+    "range_km": 330,
+    "dc_kw": 100,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "power_kw": 100,
+    "drive": "fwd",
+    "payload_kg": 800,
+    "cargo_m3": 4.4,
+    "licence": "B",
+    "body": [
+     "panel",
+     "crew"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "lastmile",
+    "trade",
+    "service"
+   ],
+   "family": "E-Partner",
+   "facts": [
+    "Shared with ë-Berlingo, Combo Electric and E-Doblò",
+    "100 kW DC fast charging",
+    "Available as panel van and crew van"
+   ]
+  },
+  {
+   "id": "ford-e-transit-courier",
+   "brand": "Ford",
+   "name": "E-Transit Courier",
+   "categoryId": "van-small",
+   "status": "on-sale",
+   "summary": "Ford's smallest electric van, aimed at urban parcel and trades work.",
+   "url": "https://www.ford.de/nutzfahrzeuge/transit-courier/e-transit-courier",
+   "values": {
+    "battery_kwh": 43,
+    "range_km": 288,
+    "dc_kw": 100,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "power_kw": 100,
+    "drive": "fwd",
+    "payload_kg": 700,
+    "cargo_m3": 2.9,
+    "licence": "B",
+    "body": [
+     "panel"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "lastmile",
+    "trade"
+   ],
+   "family": "E-Transit Courier",
+   "facts": [
+    "Ford's smallest electric van",
+    "100 kW DC fast charging",
+    "Front-wheel drive with a 100 kW motor"
+   ]
+  },
+  {
+   "id": "kia-pv5-cargo-lr",
+   "brand": "Kia",
+   "name": "PV5 Cargo Long Range",
+   "categoryId": "van-small",
+   "status": "on-sale",
+   "summary": "Purpose-built electric van on Kia's PBV platform; 43.3, 51.5 and 71.2 kWh batteries offered in Europe.",
+   "url": "https://www.kia.com/eu/pbv/vehicles/pv5-cargo/discover/",
+   "values": {
+    "dc_kw": 150,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "drive": "fwd",
+    "cargo_m3": 4.4,
+    "licence": "B",
+    "body": [
+     "panel"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 71.2,
+    "range_km": 416,
+    "power_kw": 120,
+    "payload_kg": 690
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "trade",
+    "service"
+   ],
+   "family": "PV5 Cargo",
+   "verifiedAt": "2026-09-12",
+   "docs": [
+    {
+     "title": "PV5 Cargo brochure",
+     "kind": "brochure",
+     "url": "https://example.com/demo/pv5-cargo-brochure.pdf",
+     "size": "PDF · 8 MB",
+     "lang": "de",
+     "demo": true
+    },
+    {
+     "title": "PV5 Cargo technical data sheet",
+     "kind": "datasheet",
+     "url": "https://example.com/demo/pv5-cargo-datasheet.pdf",
+     "size": "PDF · 1 MB",
+     "lang": "en",
+     "demo": true
+    },
+    {
+     "title": "Fleet price list 2026",
+     "kind": "pricelist",
+     "url": "https://example.com/demo/pv5-price-list.pdf",
+     "size": "PDF · 400 KB",
+     "lang": "de",
+     "demo": true
+    }
+   ],
+   "facts": [
+    "Built on Kia's dedicated PBV van platform",
+    "71.2 kWh battery for up to 416 km WLTP",
+    "4.4 m³ load volume"
+   ],
+   "benefits": [
+    "Low 419 mm step-in height for frequent delivery stops",
+    "8-year / 160,000 km battery warranty, extendable",
+    "Car-like cabin with a flat floor and walk-through"
+   ],
+   "benefitsDemo": true
+  },
+  {
+   "id": "kia-pv5-cargo-sr",
+   "brand": "Kia",
+   "name": "PV5 Cargo Standard Range",
+   "categoryId": "van-small",
+   "status": "on-sale",
+   "summary": "Purpose-built electric van on Kia's PBV platform; 43.3, 51.5 and 71.2 kWh batteries offered in Europe.",
+   "url": "https://www.kia.com/eu/pbv/vehicles/pv5-cargo/discover/",
+   "values": {
+    "dc_kw": 150,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "drive": "fwd",
+    "cargo_m3": 4.4,
+    "licence": "B",
+    "body": [
+     "panel"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 51.5,
+    "range_km": 293,
+    "power_kw": 89,
+    "payload_kg": 790
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "trade",
+    "service"
+   ],
+   "family": "PV5 Cargo",
+   "verifiedAt": "2026-09-12",
+   "docs": [
+    {
+     "title": "PV5 Cargo brochure",
+     "kind": "brochure",
+     "url": "https://example.com/demo/pv5-cargo-brochure.pdf",
+     "size": "PDF · 8 MB",
+     "lang": "de",
+     "demo": true
+    }
+   ],
+   "facts": [
+    "Built on Kia's dedicated PBV van platform",
+    "51.5 kWh battery for up to 293 km WLTP",
+    "4.4 m³ load volume"
+   ],
+   "benefits": [
+    "Low 419 mm step-in height for frequent delivery stops",
+    "8-year / 160,000 km battery warranty, extendable",
+    "Lower price point for urban routes"
+   ],
+   "benefitsDemo": true
+  },
+  {
+   "id": "ford-e-transit-custom",
+   "brand": "Ford",
+   "name": "E-Transit Custom",
+   "categoryId": "van-mid",
+   "status": "on-sale",
+   "summary": "One-tonne electric van with 2,300 kg towing and optional Pro Power Onboard for tools.",
+   "url": "https://www.ford.de/nutzfahrzeuge/transit-custom/e-transit-custom",
+   "values": {
+    "battery_kwh": 64,
+    "range_km": 337,
+    "dc_kw": 125,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "power_kw": 160,
+    "drive": "rwd",
+    "payload_kg": 1100,
+    "cargo_m3": 6.8,
+    "towing_kg": 2300,
+    "licence": "B",
+    "body": [
+     "panel",
+     "crew"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "trade",
+    "service",
+    "urban-dist"
+   ],
+   "family": "E-Transit Custom",
+   "facts": [
+    "Tows up to 2,300 kg",
+    "Pro Power Onboard option to run tools",
+    "Available as panel van and crew van"
+   ]
+  },
+  {
+   "id": "vw-id-buzz-cargo-rwd",
+   "brand": "Volkswagen",
+   "name": "ID. Buzz Cargo",
+   "categoryId": "van-mid",
+   "status": "on-sale",
+   "summary": "Electric-only van on the MEB platform; long-wheelbase version announced for 2026.",
+   "url": "https://www.volkswagen-nutzfahrzeuge.de/de/modelle/id-buzz-cargo.html",
+   "values": {
+    "battery_kwh": 79,
+    "range_km": 470,
+    "dc_kw": 200,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "payload_kg": 600,
+    "cargo_m3": 3.9,
+    "licence": "B",
+    "body": [
+     "panel"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ],
+    "power_kw": 210,
+    "drive": "rwd",
+    "towing_kg": 1000
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "trade",
+    "service",
+    "lastmile"
+   ],
+   "family": "ID. Buzz Cargo",
+   "facts": [
+    "Built on Volkswagen's MEB electric platform",
+    "Up to 200 kW DC fast charging",
+    "Rear-wheel drive with 210 kW"
+   ]
+  },
+  {
+   "id": "vw-id-buzz-cargo-awd",
+   "brand": "Volkswagen",
+   "name": "ID. Buzz Cargo 4MOTION",
+   "categoryId": "van-mid",
+   "status": "on-sale",
+   "summary": "Electric-only van on the MEB platform; long-wheelbase version announced for 2026.",
+   "url": "https://www.volkswagen-nutzfahrzeuge.de/de/modelle/id-buzz-cargo.html",
+   "values": {
+    "battery_kwh": 79,
+    "range_km": 470,
+    "dc_kw": 200,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "payload_kg": 600,
+    "cargo_m3": 3.9,
+    "licence": "B",
+    "body": [
+     "panel"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ],
+    "power_kw": 250,
+    "drive": "awd",
+    "towing_kg": 1800,
+    "price_eur": 50355
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "trade",
+    "service",
+    "lastmile"
+   ],
+   "family": "ID. Buzz Cargo",
+   "facts": [
+    "4MOTION all-wheel drive with 250 kW",
+    "Tows up to 1,800 kg",
+    "Up to 200 kW DC fast charging"
+   ]
+  },
+  {
+   "id": "mercedes-evito",
+   "brand": "Mercedes-Benz",
+   "name": "eVito Panel Van",
+   "categoryId": "van-mid",
+   "status": "on-sale",
+   "summary": "Mid-size van in three lengths with a 60 kWh battery and 11 kW AC charging.",
+   "url": "https://www.mercedes-benz.de/vans/de/vito/panel-van",
+   "values": {
+    "battery_kwh": 60,
+    "range_km": 314,
+    "dc_kw": 80,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "power_kw": 150,
+    "drive": "fwd",
+    "payload_kg": 900,
+    "cargo_m3": 6.6,
+    "licence": "B",
+    "body": [
+     "panel",
+     "crew"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "lastmile",
+    "trade",
+    "service"
+   ],
+   "family": "eVito Panel Van",
+   "facts": [
+    "Available in three body lengths",
+    "60 kWh usable battery",
+    "Available as panel van and crew van"
+   ]
+  },
+  {
+   "id": "opel-vivaro-electric",
+   "brand": "Opel",
+   "name": "Vivaro Electric",
+   "categoryId": "van-mid",
+   "status": "on-sale",
+   "summary": "Stellantis mid-size van, twin of Peugeot E-Expert, Citroën ë-Jumpy and Fiat E-Scudo.",
+   "url": "https://www.opel.de/nutzfahrzeuge/vivaro-e.html",
+   "values": {
+    "battery_kwh": 75,
+    "range_km": 350,
+    "dc_kw": 100,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "power_kw": 100,
+    "drive": "fwd",
+    "payload_kg": 1000,
+    "cargo_m3": 6.6,
+    "towing_kg": 1000,
+    "licence": "B",
+    "body": [
+     "panel",
+     "crew",
+     "chassis"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade"
+   ],
+   "family": "Vivaro Electric",
+   "facts": [
+    "Twin of Peugeot E-Expert, Citroën ë-Jumpy and Fiat E-Scudo",
+    "75 kWh battery",
+    "Available as panel van, crew van and chassis cab"
+   ]
+  },
+  {
+   "id": "renault-trafic-etech",
+   "brand": "Renault",
+   "name": "Trafic Van E-Tech Electric",
+   "categoryId": "van-mid",
+   "status": "orders-open",
+   "summary": "All-new 800 V Trafic; 15–80 % fast charge in under 20 minutes and up to 450 km depending on battery.",
+   "url": "https://media.renault.com/new-renault-trafic-van-e-tech-electric-a-new-efficient-agile-and-innovative-vehicle-for-business-users/",
+   "values": {
+    "battery_kwh": 77,
+    "range_km": 450,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v800",
+    "licence": "B",
+    "body": [
+     "panel"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade"
+   ],
+   "family": "Trafic Van E-Tech Electric",
+   "facts": [
+    "800 V system: 15–80 % charge in under 20 minutes",
+    "Up to 450 km range depending on battery",
+    "All-new generation of the Trafic"
+   ]
+  },
+  {
+   "id": "mercedes-esprinter-b56",
+   "brand": "Mercedes-Benz",
+   "name": "eSprinter 56 kWh",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Large van with 56, 81 or 113 kWh batteries, 100 or 150 kW, and 3.5 t or 4.25 t GVW; up to 400 km WLTP with 113 kWh.",
+   "url": "https://www.drive-electric.co.uk/news/new-mercedes-benz-esprinter-get-big-battery-and-more-range/",
+   "values": {
+    "dc_kw": 115,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "drive": "rwd",
+    "cargo_m3": 14,
+    "licence": "B",
+    "body": [
+     "panel",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "towing_kg": 2000,
+    "battery_kwh": 56,
+    "power_kw": 100,
+    "gvw_t": 3.5
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade",
+    "temp"
+   ],
+   "family": "eSprinter",
+   "facts": [
+    "Entry battery of the eSprinter range",
+    "Tows up to 2,000 kg",
+    "14 m³ load volume in the long-wheelbase van"
+   ]
+  },
+  {
+   "id": "mercedes-esprinter-b81",
+   "brand": "Mercedes-Benz",
+   "name": "eSprinter 81 kWh",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Large van with 56, 81 or 113 kWh batteries, 100 or 150 kW, and 3.5 t or 4.25 t GVW; up to 400 km WLTP with 113 kWh.",
+   "url": "https://www.drive-electric.co.uk/news/new-mercedes-benz-esprinter-get-big-battery-and-more-range/",
+   "values": {
+    "dc_kw": 115,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "drive": "rwd",
+    "cargo_m3": 14,
+    "licence": "B",
+    "body": [
+     "panel",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "towing_kg": 2000,
+    "battery_kwh": 81,
+    "power_kw": 150,
+    "gvw_t": 3.5
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade",
+    "temp"
+   ],
+   "family": "eSprinter",
+   "facts": [
+    "Mid-size 81 kWh battery with 150 kW",
+    "Tows up to 2,000 kg",
+    "14 m³ load volume in the long-wheelbase van"
+   ]
+  },
+  {
+   "id": "mercedes-esprinter-b113",
+   "brand": "Mercedes-Benz",
+   "name": "eSprinter 113 kWh (3.5 t)",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Large van with 56, 81 or 113 kWh batteries, 100 or 150 kW, and 3.5 t or 4.25 t GVW; up to 400 km WLTP with 113 kWh.",
+   "url": "https://www.drive-electric.co.uk/news/new-mercedes-benz-esprinter-get-big-battery-and-more-range/",
+   "values": {
+    "dc_kw": 115,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "drive": "rwd",
+    "cargo_m3": 14,
+    "licence": "B",
+    "body": [
+     "panel",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "towing_kg": 2000,
+    "battery_kwh": 113,
+    "power_kw": 150,
+    "gvw_t": 3.5,
+    "range_km": 400,
+    "chemistry": "lfp"
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade",
+    "temp"
+   ],
+   "family": "eSprinter",
+   "facts": [
+    "113 kWh LFP battery for up to 400 km WLTP",
+    "Tows up to 2,000 kg",
+    "14 m³ load volume in the long-wheelbase van"
+   ]
+  },
+  {
+   "id": "mercedes-esprinter-b113h",
+   "brand": "Mercedes-Benz",
+   "name": "eSprinter 113 kWh (4.25 t)",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Large van with 56, 81 or 113 kWh batteries, 100 or 150 kW, and 3.5 t or 4.25 t GVW; up to 400 km WLTP with 113 kWh.",
+   "url": "https://www.drive-electric.co.uk/news/new-mercedes-benz-esprinter-get-big-battery-and-more-range/",
+   "values": {
+    "dc_kw": 115,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "drive": "rwd",
+    "cargo_m3": 14,
+    "licence": "B",
+    "body": [
+     "panel",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "towing_kg": 2000,
+    "battery_kwh": 113,
+    "power_kw": 150,
+    "gvw_t": 4.25,
+    "chemistry": "lfp",
+    "payload_kg": 1400
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade",
+    "temp"
+   ],
+   "family": "eSprinter",
+   "facts": [
+    "4.25 t GVW for up to 1,400 kg payload",
+    "113 kWh LFP battery",
+    "14 m³ load volume in the long-wheelbase van"
+   ]
+  },
+  {
+   "id": "ford-e-transit-sr135",
+   "brand": "Ford",
+   "name": "E-Transit 68 kWh 135 kW",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Large van with 68 or 89 kWh usable and 135 or 198 kW; the 89 kWh version adds 180 kW DC and 22 kW AC charging.",
+   "url": "https://www.electrive.com/2024/04/23/ford-gives-e-transit-larger-battery-for-400-kilometres-range/",
+   "values": {
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "drive": "rwd",
+    "gvw_t": 4.25,
+    "payload_kg": 1758,
+    "cargo_m3": 15.1,
+    "licence": "B",
+    "body": [
+     "panel",
+     "crew",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 68,
+    "range_km": 316,
+    "dc_kw": 115,
+    "ac_kw": 11,
+    "power_kw": 135
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade"
+   ],
+   "family": "E-Transit",
+   "facts": [
+    "68 kWh usable battery, 316 km WLTP",
+    "4.25 t GVW option",
+    "Available as panel van, crew van and chassis cab"
+   ]
+  },
+  {
+   "id": "ford-e-transit-sr198",
+   "brand": "Ford",
+   "name": "E-Transit 68 kWh 198 kW",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Large van with 68 or 89 kWh usable and 135 or 198 kW; the 89 kWh version adds 180 kW DC and 22 kW AC charging.",
+   "url": "https://www.electrive.com/2024/04/23/ford-gives-e-transit-larger-battery-for-400-kilometres-range/",
+   "values": {
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "drive": "rwd",
+    "gvw_t": 4.25,
+    "payload_kg": 1758,
+    "cargo_m3": 15.1,
+    "licence": "B",
+    "body": [
+     "panel",
+     "crew",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 68,
+    "range_km": 316,
+    "dc_kw": 115,
+    "ac_kw": 11,
+    "power_kw": 198
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade"
+   ],
+   "family": "E-Transit",
+   "facts": [
+    "68 kWh usable battery, 316 km WLTP",
+    "198 kW motor",
+    "Available as panel van, crew van and chassis cab"
+   ]
+  },
+  {
+   "id": "ford-e-transit-er198",
+   "brand": "Ford",
+   "name": "E-Transit 89 kWh",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Large van with 68 or 89 kWh usable and 135 or 198 kW; the 89 kWh version adds 180 kW DC and 22 kW AC charging.",
+   "url": "https://www.electrive.com/2024/04/23/ford-gives-e-transit-larger-battery-for-400-kilometres-range/",
+   "values": {
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "drive": "rwd",
+    "gvw_t": 4.25,
+    "payload_kg": 1758,
+    "cargo_m3": 15.1,
+    "licence": "B",
+    "body": [
+     "panel",
+     "crew",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 89,
+    "range_km": 402,
+    "dc_kw": 180,
+    "ac_kw": 22,
+    "power_kw": 198,
+    "price_eur": 64590
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade"
+   ],
+   "family": "E-Transit",
+   "facts": [
+    "89 kWh usable battery, 402 km WLTP",
+    "180 kW DC and 22 kW AC charging",
+    "Available as panel van, crew van and chassis cab"
+   ]
+  },
+  {
+   "id": "ford-transit-city",
+   "brand": "Ford",
+   "name": "Transit City",
+   "categoryId": "van-large",
+   "status": "orders-open",
+   "summary": "Cost-focused, battery-electric-only Transit shown at IAA Transportation 2026, from €35,990 net (L1H1).",
+   "url": "https://www.electrive.com/2026/09/13/electric-vans-at-iaa-transportation-2026-what-to-expect/",
+   "values": {
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "licence": "B",
+    "body": [
+     "panel"
+    ],
+    "price_eur": 35990,
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "lastmile",
+    "urban-dist"
+   ],
+   "family": "Transit City",
+   "facts": [
+    "Battery-electric-only Transit variant",
+    "From €35,990 net (L1H1)",
+    "Premiered at IAA Transportation 2026"
+   ]
+  },
+  {
+   "id": "renault-master-etech-b87",
+   "brand": "Renault",
+   "name": "Master Van E-Tech 87 kWh",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Aerodynamic new-generation Master with 40 or 87 kWh and a heat pump as standard.",
+   "url": "https://www.renault.de/nutzfahrzeuge/master-e-tech-elektro.html",
+   "values": {
+    "dc_kw": 130,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "drive": "fwd",
+    "gvw_t": 4.0,
+    "payload_kg": 1625,
+    "cargo_m3": 13,
+    "licence": "B",
+    "body": [
+     "panel",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "heat_pump": "std",
+    "battery_kwh": 87,
+    "range_km": 460,
+    "power_kw": 105
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade"
+   ],
+   "family": "Master Van E-Tech",
+   "facts": [
+    "Up to 460 km WLTP with the 87 kWh battery",
+    "Heat pump as standard",
+    "Aerodynamic new-generation Master"
+   ]
+  },
+  {
+   "id": "renault-master-etech-b40",
+   "brand": "Renault",
+   "name": "Master Van E-Tech 40 kWh",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Aerodynamic new-generation Master with 40 or 87 kWh and a heat pump as standard.",
+   "url": "https://www.renault.de/nutzfahrzeuge/master-e-tech-elektro.html",
+   "values": {
+    "dc_kw": 130,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "drive": "fwd",
+    "gvw_t": 4.0,
+    "payload_kg": 1625,
+    "cargo_m3": 13,
+    "licence": "B",
+    "body": [
+     "panel",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "heat_pump": "std",
+    "battery_kwh": 40
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade"
+   ],
+   "family": "Master Van E-Tech",
+   "facts": [
+    "Smaller 40 kWh battery for short urban routes",
+    "Heat pump as standard",
+    "Aerodynamic new-generation Master"
+   ]
+  },
+  {
+   "id": "fiat-e-ducato",
+   "brand": "Fiat Professional",
+   "name": "E-Ducato",
+   "categoryId": "van-large",
+   "status": "on-sale",
+   "summary": "Stellantis large van (also Peugeot E-Boxer, Citroën ë-Jumper, Opel Movano Electric) with a 110 kWh battery.",
+   "url": "https://www.fiatprofessional.com/de/e-ducato",
+   "values": {
+    "battery_kwh": 110,
+    "range_km": 420,
+    "dc_kw": 150,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "power_kw": 200,
+    "drive": "fwd",
+    "gvw_t": 4.25,
+    "payload_kg": 1300,
+    "cargo_m3": 17,
+    "licence": "B",
+    "body": [
+     "panel",
+     "chassis"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "lastmile",
+    "urban-dist",
+    "trade"
+   ],
+   "family": "E-Ducato",
+   "facts": [
+    "Shared with E-Boxer, ë-Jumper and Movano Electric",
+    "110 kWh battery",
+    "Up to 17 m³ load volume"
+   ]
+  },
+  {
+   "id": "isuzu-dmax-ev",
+   "brand": "Isuzu",
+   "name": "D-Max EV",
+   "categoryId": "pickup",
+   "status": "on-sale",
+   "summary": "Electric version of the D-Max with full-time 4WD, one-tonne payload and 3.5 t towing.",
+   "url": "https://www.isuzu.co.uk/vehicles-ev/",
+   "values": {
+    "battery_kwh": 66.9,
+    "range_km": 263,
+    "dc_kw": 50,
+    "ac_kw": 11,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "power_kw": 140,
+    "drive": "awd",
+    "payload_kg": 1000,
+    "towing_kg": 3500,
+    "licence": "B",
+    "body": [
+     "pickupbed"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "trade",
+    "farmyard",
+    "parks"
+   ],
+   "family": "D-Max EV",
+   "facts": [
+    "Full-time four-wheel drive",
+    "One-tonne payload",
+    "Tows up to 3,500 kg"
+   ]
+  },
+  {
+   "id": "maxus-eterron-9",
+   "brand": "Maxus",
+   "name": "eTerron 9",
+   "categoryId": "pickup",
+   "status": "on-sale",
+   "summary": "Full-size electric pickup with dual motors and a 102 kWh battery.",
+   "url": "https://www.maxus.de/modelle/eterron-9",
+   "values": {
+    "battery_kwh": 102,
+    "range_km": 430,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "power_kw": 325,
+    "drive": "awd",
+    "towing_kg": 3500,
+    "licence": "B",
+    "body": [
+     "pickupbed"
+    ],
+    "eu_class": "N1",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "trade",
+    "service"
+   ],
+   "family": "eTerron 9",
+   "facts": [
+    "Dual motors with 325 kW",
+    "102 kWh battery",
+    "Tows up to 3,500 kg"
+   ]
+  },
+  {
+   "id": "fuso-ecanter-l",
+   "brand": "FUSO",
+   "name": "eCanter L (124 kWh)",
+   "categoryId": "truck-light",
+   "status": "on-sale",
+   "summary": "Light-duty truck from 4.25 to 8.55 t GVW with one to three battery packs and six wheelbases.",
+   "url": "https://insideevs.com/news/611724/next-generation-fuso-ecanter-europe/",
+   "values": {
+    "dc_kw": 104,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "lfp",
+    "power_kw": 129,
+    "drive": "rwd",
+    "gvw_t": 8.55,
+    "payload_kg": 5000,
+    "licence": "C1",
+    "body": [
+     "chassis",
+     "box",
+     "tipper",
+     "fridge"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 123.9,
+    "range_km": 200
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "urban-dist",
+    "waste",
+    "parks"
+   ],
+   "family": "eCanter",
+   "facts": [
+    "Three battery packs for up to 200 km",
+    "4.25 to 8.55 t GVW",
+    "Up to 104 kW DC fast charging"
+   ]
+  },
+  {
+   "id": "fuso-ecanter-m",
+   "brand": "FUSO",
+   "name": "eCanter M (83 kWh)",
+   "categoryId": "truck-light",
+   "status": "on-sale",
+   "summary": "Light-duty truck from 4.25 to 8.55 t GVW with one to three battery packs and six wheelbases.",
+   "url": "https://insideevs.com/news/611724/next-generation-fuso-ecanter-europe/",
+   "values": {
+    "dc_kw": 104,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "lfp",
+    "power_kw": 129,
+    "drive": "rwd",
+    "gvw_t": 8.55,
+    "payload_kg": 5000,
+    "licence": "C1",
+    "body": [
+     "chassis",
+     "box",
+     "tipper",
+     "fridge"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 82.6,
+    "range_km": 140
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "urban-dist",
+    "waste",
+    "parks"
+   ],
+   "family": "eCanter",
+   "facts": [
+    "Two battery packs for up to 140 km",
+    "4.25 to 8.55 t GVW",
+    "Up to 104 kW DC fast charging"
+   ]
+  },
+  {
+   "id": "fuso-ecanter-s",
+   "brand": "FUSO",
+   "name": "eCanter S (41 kWh)",
+   "categoryId": "truck-light",
+   "status": "on-sale",
+   "summary": "Light-duty truck from 4.25 to 8.55 t GVW with one to three battery packs and six wheelbases.",
+   "url": "https://insideevs.com/news/611724/next-generation-fuso-ecanter-europe/",
+   "values": {
+    "dc_kw": 104,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "lfp",
+    "power_kw": 129,
+    "drive": "rwd",
+    "gvw_t": 8.55,
+    "payload_kg": 5000,
+    "licence": "C1",
+    "body": [
+     "chassis",
+     "box",
+     "tipper",
+     "fridge"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 41.3,
+    "range_km": 70
+   },
+   "updatedAt": "2026-09-26",
+   "apps": [
+    "urban-dist",
+    "waste",
+    "parks"
+   ],
+   "family": "eCanter",
+   "facts": [
+    "One battery pack for up to 70 km",
+    "4.25 to 8.55 t GVW",
+    "Up to 104 kW DC fast charging"
+   ]
+  },
+  {
+   "id": "iveco-edaily",
+   "brand": "IVECO",
+   "name": "eDaily",
+   "categoryId": "truck-light",
+   "status": "on-sale",
+   "summary": "Electric Daily from 3.5 to 7.2 t as van or chassis cab, with one to three battery packs.",
+   "url": "https://www.iveco.com/de-de/modelle/edaily",
+   "values": {
+    "battery_kwh": 111,
+    "range_km": 400,
+    "dc_kw": 80,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "voltage": "v400",
+    "chemistry": "nmc",
+    "power_kw": 140,
+    "drive": "rwd",
+    "gvw_t": 7.2,
+    "payload_kg": 4650,
+    "cargo_m3": 19.6,
+    "licence": "C1",
+    "body": [
+     "panel",
+     "chassis",
+     "box",
+     "tipper"
+    ],
+    "eu_class": "N2",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "urban-dist",
+    "lastmile",
+    "trade"
+   ],
+   "family": "eDaily",
+   "facts": [
+    "3.5 to 7.2 t GVW",
+    "Available as van or chassis cab",
+    "One to three battery packs"
+   ]
+  },
+  {
+   "id": "volvo-fl-electric",
+   "brand": "Volvo",
+   "name": "FL Electric",
+   "categoryId": "truck-medium",
+   "status": "on-sale",
+   "summary": "16-tonne urban distribution truck with up to 565 kWh across six battery packs.",
+   "url": "https://www.volvotrucks.com/en-en/news-stories/press-releases/2023/jun/volvo-presents-electric-trucks-with-longer-range.html",
+   "values": {
+    "battery_kwh": 565,
+    "range_km": 450,
+    "charging": [
+     "ccs2"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 180,
+    "drive": "4x2",
+    "gvw_t": 16.7,
+    "licence": "C",
+    "body": [
+     "box",
+     "fridge",
+     "chassis"
+    ],
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "urban-dist",
+    "temp"
+   ],
+   "family": "FL Electric",
+   "facts": [
+    "16.7 t GVW for urban distribution",
+    "Up to six battery packs (565 kWh)",
+    "Box, refrigerated or chassis cab"
+   ]
+  },
+  {
+   "id": "mercedes-eactros-400-rigid",
+   "brand": "Mercedes-Benz",
+   "name": "eActros 400 (rigid)",
+   "categoryId": "truck-heavy",
+   "status": "on-sale",
+   "summary": "Two-pack derivative of the eActros 600 for regional distribution, 10–80 % charge in 46 minutes.",
+   "url": "https://www.electrive.com/2025/10/02/mercedes-benz-trucks-unveils-new-eactros-400/",
+   "values": {
+    "battery_kwh": 414,
+    "range_km": 480,
+    "dc_kw": 400,
+    "charging": [
+     "ccs2"
+    ],
+    "voltage": "v800",
+    "chemistry": "lfp",
+    "power_kw": 400,
+    "drive": "6x2",
+    "gvw_t": 27,
+    "licence": "C",
+    "body": [
+     "chassis",
+     "box",
+     "fridge",
+     "flatbed"
+    ],
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "regional",
+    "urban-dist",
+    "temp"
+   ],
+   "family": "eActros 400 (rigid)",
+   "facts": [
+    "Two LFP packs derived from the eActros 600",
+    "10–80 % in 46 minutes at 400 kW",
+    "800 V system"
+   ]
+  },
+  {
+   "id": "volvo-fe-electric",
+   "brand": "Volvo",
+   "name": "FE Electric",
+   "categoryId": "truck-heavy",
+   "status": "on-sale",
+   "summary": "27-tonne rigid for city distribution and refuse bodies, up to 565 kWh.",
+   "url": "https://www.volvotrucks.com/en-en/news-stories/press-releases/2023/jun/volvo-presents-electric-trucks-with-longer-range.html",
+   "values": {
+    "battery_kwh": 565,
+    "range_km": 275,
+    "charging": [
+     "ccs2"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 330,
+    "drive": "6x2",
+    "gvw_t": 27,
+    "licence": "C",
+    "body": [
+     "chassis",
+     "box",
+     "refuse"
+    ],
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "urban-dist",
+    "waste"
+   ],
+   "family": "FE Electric",
+   "facts": [
+    "27 t rigid for city distribution",
+    "Suits refuse collection bodies",
+    "Up to 565 kWh battery"
+   ]
+  },
+  {
+   "id": "mercedes-eactros-600",
+   "brand": "Mercedes-Benz",
+   "name": "eActros 600",
+   "categoryId": "truck-tractor",
+   "status": "on-sale",
+   "summary": "Long-haul tractor with 621 kWh LFP battery, 500 km fully loaded and an MCS port as an option.",
+   "url": "https://www.mercedes-benz-trucks.com/int/en/trucks/eactros.html",
+   "values": {
+    "battery_kwh": 621,
+    "range_km": 500,
+    "dc_kw": 400,
+    "charging": [
+     "ccs2",
+     "mcs"
+    ],
+    "voltage": "v800",
+    "chemistry": "lfp",
+    "power_kw": 400,
+    "drive": "4x2",
+    "gvw_t": 44,
+    "licence": "CE",
+    "body": [
+     "fifth"
+    ],
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "longhaul",
+    "regional"
+   ],
+   "family": "eActros 600",
+   "facts": [
+    "621 kWh LFP battery",
+    "500 km fully loaded",
+    "MCS megawatt charging option"
+   ]
+  },
+  {
+   "id": "mercedes-eactros-400-tractor",
+   "brand": "Mercedes-Benz",
+   "name": "eActros 400 (tractor)",
+   "categoryId": "truck-tractor",
+   "status": "on-sale",
+   "summary": "4x2 tractor with two LFP packs and a 9.5 t fifth-wheel load, over 25 t payload with semi-trailer.",
+   "url": "https://www.daimlertruck.com/en/newsroom/pressrelease/mercedes-benz-trucks-presents-the-new-eactros-400-based-on-the-eactros-600-numerous-new-variants-available-53205175",
+   "values": {
+    "battery_kwh": 414,
+    "range_km": 330,
+    "dc_kw": 400,
+    "charging": [
+     "ccs2"
+    ],
+    "voltage": "v800",
+    "chemistry": "lfp",
+    "power_kw": 400,
+    "drive": "4x2",
+    "gvw_t": 40,
+    "payload_kg": 25000,
+    "licence": "CE",
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ],
+    "body": [
+     "fifth"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "regional"
+   ],
+   "family": "eActros 400 (tractor)",
+   "facts": [
+    "9.5 t fifth-wheel load",
+    "Over 25 t payload with semi-trailer",
+    "800 V system with LFP battery"
+   ]
+  },
+  {
+   "id": "man-etgx-2026",
+   "brand": "MAN",
+   "name": "eTGX (new generation)",
+   "categoryId": "truck-tractor",
+   "status": "orders-open",
+   "summary": "Premiered at IAA 2026: 616 kWh net in the 6x2, up to 720 km, 750 kW MCS and 375 kW CCS.",
+   "url": "https://www.electrive.com/2026/09/14/new-generation-man-etgx-unveiled-with-720-km-range/",
+   "values": {
+    "battery_kwh": 616,
+    "range_km": 720,
+    "dc_kw": 750,
+    "charging": [
+     "ccs2",
+     "mcs"
+    ],
+    "drive": "6x2",
+    "gvw_t": 44,
+    "licence": "CE",
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ],
+    "body": [
+     "fifth"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "longhaul",
+    "regional"
+   ],
+   "family": "eTGX (new generation)",
+   "facts": [
+    "Up to 720 km range (6x2)",
+    "750 kW MCS and 375 kW CCS charging",
+    "Premiered at IAA Transportation 2026"
+   ]
+  },
+  {
+   "id": "volvo-fh-electric",
+   "brand": "Volvo",
+   "name": "FH Electric",
+   "categoryId": "truck-tractor",
+   "status": "on-sale",
+   "summary": "Regional-haul tractor with up to 540 kWh and 44 t GCW; Europe's best-selling heavy e-truck line.",
+   "url": "https://www.volvotrucks.com/en-en/trucks/electric/volvo-fh-electric.html",
+   "values": {
+    "battery_kwh": 540,
+    "range_km": 300,
+    "dc_kw": 250,
+    "charging": [
+     "ccs2"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 490,
+    "drive": "4x2",
+    "gvw_t": 44,
+    "licence": "CE",
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ],
+    "body": [
+     "fifth"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "regional",
+    "longhaul"
+   ],
+   "family": "FH Electric",
+   "facts": [
+    "Up to 540 kWh battery",
+    "44 t GCW",
+    "Regional-haul tractor"
+   ]
+  },
+  {
+   "id": "volvo-fh-aero-electric",
+   "brand": "Volvo",
+   "name": "FH Aero Electric (long range)",
+   "categoryId": "truck-tractor",
+   "status": "orders-open",
+   "summary": "Long-range FH Aero with a 780 kWh battery and a claimed 700 km per charge.",
+   "url": "https://www.volvotrucks.com/en-en/trucks/electric/volvo-fh-aero-electric.html",
+   "values": {
+    "battery_kwh": 780,
+    "range_km": 700,
+    "charging": [
+     "ccs2",
+     "mcs"
+    ],
+    "drive": "4x2",
+    "gvw_t": 44,
+    "licence": "CE",
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ],
+    "body": [
+     "fifth"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "longhaul"
+   ],
+   "family": "FH Aero Electric (long range)",
+   "facts": [
+    "780 kWh battery",
+    "Up to 700 km per charge",
+    "Aerodynamic FH Aero cab"
+   ]
+  },
+  {
+   "id": "renault-etech-t",
+   "brand": "Renault Trucks",
+   "name": "E-Tech T",
+   "categoryId": "truck-tractor",
+   "status": "on-sale",
+   "summary": "Regional tractor sharing its driveline with Volvo's FH Electric.",
+   "url": "https://www.renault-trucks.com/en/e-tech-t",
+   "values": {
+    "battery_kwh": 540,
+    "range_km": 300,
+    "dc_kw": 250,
+    "charging": [
+     "ccs2"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 490,
+    "drive": "4x2",
+    "gvw_t": 44,
+    "licence": "CE",
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ],
+    "body": [
+     "fifth"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "regional"
+   ],
+   "family": "E-Tech T",
+   "facts": [
+    "Driveline shared with the Volvo FH Electric",
+    "540 kWh battery",
+    "44 t GCW"
+   ]
+  },
+  {
+   "id": "daf-xf-electric",
+   "brand": "DAF",
+   "name": "XF Electric",
+   "categoryId": "truck-tractor",
+   "status": "on-sale",
+   "summary": "New Generation XF with up to 525 kWh for regional and long-haul work.",
+   "url": "https://www.daf.com/en/trucks/daf-xf-electric",
+   "values": {
+    "battery_kwh": 525,
+    "range_km": 500,
+    "dc_kw": 325,
+    "charging": [
+     "ccs2"
+    ],
+    "chemistry": "nmc",
+    "drive": "4x2",
+    "gvw_t": 40,
+    "licence": "CE",
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ],
+    "body": [
+     "fifth"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "regional",
+    "longhaul"
+   ],
+   "family": "XF Electric",
+   "facts": [
+    "Up to 525 kWh battery",
+    "Up to 500 km range",
+    "New Generation XF cab"
+   ]
+  },
+  {
+   "id": "solaris-urbino-12-electric",
+   "brand": "Solaris",
+   "name": "Urbino 12 electric",
+   "categoryId": "bus-city",
+   "status": "on-sale",
+   "summary": "Europe's best-selling electric city bus; up to six ~100 kWh NMC modules and optional pantograph.",
+   "url": "https://www.sustainable-bus.com/electric-bus/solaris-urbino-12-electric/",
+   "values": {
+    "battery_kwh": 600,
+    "charging": [
+     "ccs2",
+     "panto"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 220,
+    "length_m": 12,
+    "passengers": 90,
+    "licence": "D",
+    "body": [
+     "passenger"
+    ],
+    "eu_class": "M3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "urban-pt"
+   ],
+   "family": "Urbino 12 electric",
+   "facts": [
+    "Europe's best-selling electric city bus",
+    "Up to six ~100 kWh NMC modules",
+    "Pantograph charging option"
+   ]
+  },
+  {
+   "id": "mercedes-ecitaro",
+   "brand": "Mercedes-Benz",
+   "name": "eCitaro (NMC4)",
+   "categoryId": "bus-city",
+   "status": "on-sale",
+   "summary": "Solo city bus with the NMC4 battery generation introduced at Busworld 2025.",
+   "url": "https://www.mercedes-benz-bus.com/int/en/models/ecitaro.html",
+   "values": {
+    "charging": [
+     "ccs2",
+     "panto"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 250,
+    "length_m": 12.1,
+    "passengers": 88,
+    "licence": "D",
+    "body": [
+     "passenger"
+    ],
+    "eu_class": "M3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "urban-pt"
+   ],
+   "family": "eCitaro (NMC4)",
+   "facts": [
+    "NMC4 battery generation from 2025",
+    "Pantograph charging option",
+    "12.1 m solo city bus"
+   ]
+  },
+  {
+   "id": "man-lions-city-12e",
+   "brand": "MAN",
+   "name": "Lion's City 12 E",
+   "categoryId": "bus-city",
+   "status": "on-sale",
+   "summary": "12 m low-floor city bus with 480 kWh and a guaranteed 350 km over battery life.",
+   "url": "https://www.mantruckandbus.com/en/bus/lions-city-e.html",
+   "values": {
+    "battery_kwh": 480,
+    "range_km": 350,
+    "charging": [
+     "ccs2",
+     "panto"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 240,
+    "length_m": 12.2,
+    "passengers": 88,
+    "licence": "D",
+    "body": [
+     "passenger"
+    ],
+    "eu_class": "M3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "urban-pt"
+   ],
+   "family": "Lion's City 12 E",
+   "facts": [
+    "480 kWh battery",
+    "350 km range guaranteed over battery life",
+    "Pantograph charging option"
+   ]
+  },
+  {
+   "id": "man-lions-city-18e",
+   "brand": "MAN",
+   "name": "Lion's City 18 E",
+   "categoryId": "bus-artic",
+   "status": "on-sale",
+   "summary": "Articulated 18 m version with 640 kWh and two central motors.",
+   "url": "https://www.mantruckandbus.com/en/bus/lions-city-e.html",
+   "values": {
+    "battery_kwh": 640,
+    "range_km": 350,
+    "charging": [
+     "ccs2",
+     "panto"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 320,
+    "length_m": 18.1,
+    "passengers": 120,
+    "licence": "D",
+    "body": [
+     "passenger"
+    ],
+    "eu_class": "M3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "urban-pt"
+   ],
+   "family": "Lion's City 18 E",
+   "facts": [
+    "18 m articulated bus",
+    "640 kWh battery",
+    "Up to 120 passengers"
+   ]
+  },
+  {
+   "id": "mercedes-eeconic",
+   "brand": "Mercedes-Benz",
+   "name": "eEconic",
+   "categoryId": "truck-heavy",
+   "status": "on-sale",
+   "summary": "Low-entry refuse chassis with a direct-vision cab, sized for a full collection shift on one charge.",
+   "url": "https://www.mercedes-benz-trucks.com/int/en/trucks/eeconic.html",
+   "values": {
+    "battery_kwh": 336,
+    "range_km": 100,
+    "dc_kw": 160,
+    "charging": [
+     "ccs2"
+    ],
+    "chemistry": "nmc",
+    "power_kw": 330,
+    "drive": "6x2",
+    "gvw_t": 27,
+    "licence": "C",
+    "body": [
+     "refuse"
+    ],
+    "eu_class": "N3",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-25",
+   "apps": [
+    "waste"
+   ],
+   "family": "eEconic",
+   "facts": [
+    "Low-entry cab with direct vision for crews",
+    "Sized for a full collection shift",
+    "27 t GVW for refuse bodies"
+   ]
+  },
+  {
+   "id": "polaris-ranger-xp-kinetic-ult",
+   "brand": "Polaris",
+   "name": "Ranger XP Kinetic Ultimate",
+   "categoryId": "utv",
+   "status": "on-sale",
+   "summary": "Electric side-by-side with 14.9 or 29.8 kWh, sold in Europe in Premium and Ultimate trims.",
+   "url": "https://www.polaris-orv.media/polaris-ranger-xp-kinetic-premium-and-ultimate-models-now-available-in-europe-119491/",
+   "apps": [
+    "farmyard",
+    "slopes",
+    "parks",
+    "industrialsite"
+   ],
+   "values": {
+    "power_kw": 82,
+    "drive": "awd",
+    "payload_kg": 567,
+    "towing_kg": 1134,
+    "eu_class": "T",
+    "licence": "B",
+    "body": [
+     "pickupbed"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 29.8,
+    "range_km": 129
+   },
+   "updatedAt": "2026-09-26",
+   "family": "Ranger XP Kinetic",
+   "facts": [
+    "29.8 kWh battery for up to 129 km",
+    "82 kW (110 hp) motor",
+    "Electric side-by-side sold in Europe"
+   ]
+  },
+  {
+   "id": "polaris-ranger-xp-kinetic-prem",
+   "brand": "Polaris",
+   "name": "Ranger XP Kinetic Premium",
+   "categoryId": "utv",
+   "status": "on-sale",
+   "summary": "Electric side-by-side with 14.9 or 29.8 kWh, sold in Europe in Premium and Ultimate trims.",
+   "url": "https://www.polaris-orv.media/polaris-ranger-xp-kinetic-premium-and-ultimate-models-now-available-in-europe-119491/",
+   "apps": [
+    "farmyard",
+    "slopes",
+    "parks",
+    "industrialsite"
+   ],
+   "values": {
+    "power_kw": 82,
+    "drive": "awd",
+    "payload_kg": 567,
+    "towing_kg": 1134,
+    "eu_class": "T",
+    "licence": "B",
+    "body": [
+     "pickupbed"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 14.9,
+    "range_km": 72
+   },
+   "updatedAt": "2026-09-26",
+   "family": "Ranger XP Kinetic",
+   "facts": [
+    "14.9 kWh battery for up to 72 km",
+    "82 kW (110 hp) motor",
+    "Electric side-by-side sold in Europe"
+   ]
+  },
+  {
+   "id": "goupil-g6",
+   "brand": "Goupil",
+   "name": "G6",
+   "categoryId": "light-utility",
+   "status": "on-sale",
+   "summary": "Narrow 1.7 m utility vehicle for city centres, parks and campuses; up to 1,200 kg payload and 80 km/h.",
+   "url": "https://www.goupil-ev.com/en/g6-2020",
+   "apps": [
+    "parks",
+    "waste",
+    "lastmile",
+    "industrialsite"
+   ],
+   "values": {
+    "battery_kwh": 30,
+    "range_km": 152,
+    "ac_kw": 6.6,
+    "charging": [
+     "type2"
+    ],
+    "top_speed": 80,
+    "payload_kg": 1200,
+    "cargo_m3": 9,
+    "gvw_t": 3.5,
+    "eu_class": "N1",
+    "licence": "B",
+    "body": [
+     "tipper",
+     "box",
+     "flatbed"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "G6",
+   "verifiedAt": "2026-08-30",
+   "facts": [
+    "Only 1.70 m wide",
+    "Up to 80 km/h top speed",
+    "Tipper, box or flatbed bodies"
+   ],
+   "benefits": [
+    "Only 1.70 m wide for old towns, parks and campuses",
+    "Up to 1,200 kg payload in a compact footprint",
+    "Tipper, box and flatbed bodies from the factory"
+   ],
+   "benefitsDemo": true
+  },
+  {
+   "id": "bucher-citycat-vs20e",
+   "brand": "Bucher Municipal",
+   "name": "CityCat VS20e",
+   "categoryId": "sweepers",
+   "status": "on-sale",
+   "summary": "3.5 t electric compact sweeper with a 2 m³ hopper and 22 kW onboard charging; drivable on a B licence.",
+   "url": "https://www.buchermunicipal.com/int/products/sweepers/compact-sweepers/citycat-vs20e",
+   "apps": [
+    "streetclean",
+    "airport"
+   ],
+   "values": {
+    "battery_kwh": 45,
+    "runtime_h": 6,
+    "ac_kw": 22,
+    "charging": [
+     "type2"
+    ],
+    "hopper_m3": 2,
+    "work_width_m": 2.7,
+    "payload_kg": 1000,
+    "gvw_t": 3.5,
+    "eu_class": "SPM",
+    "licence": "B",
+    "body": [
+     "sweeper"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "CityCat VS20e",
+   "facts": [
+    "3.5 t class, drivable on a B licence",
+    "2 m³ hopper",
+    "22 kW onboard charging, 2–3 h recharge"
+   ]
+  },
+  {
+   "id": "schmidt-eswingo-200",
+   "brand": "Aebi Schmidt",
+   "name": "eSwingo 200+",
+   "categoryId": "sweepers",
+   "status": "on-sale",
+   "summary": "Fully electric compact sweeper with a 75 kWh battery, up to 10 hours of sweeping and 50 km/h transfer speed.",
+   "url": "https://www.aebi-schmidt.com/en/products/schmidt/sweepers/eswingo-200/",
+   "apps": [
+    "streetclean"
+   ],
+   "values": {
+    "battery_kwh": 75,
+    "runtime_h": 10,
+    "top_speed": 50,
+    "hopper_m3": 2,
+    "work_width_m": 2.9,
+    "gvw_t": 5,
+    "eu_class": "SPM",
+    "body": [
+     "sweeper"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "eSwingo 200+",
+   "facts": [
+    "Up to 10 hours of sweeping",
+    "50 km/h transfer speed",
+    "2 m³ hopper"
+   ]
+  },
+  {
+   "id": "ladog-e1250",
+   "brand": "Aebi Schmidt",
+   "name": "LADOG E1250",
+   "categoryId": "carriers",
+   "status": "on-sale",
+   "summary": "Electric version of the compact LADOG T1250 transporter, carrying sweeping, winter and mowing implements.",
+   "url": "https://www.aebi-schmidt.com/en/products/ladog/multipurpose-transporters/e1250/",
+   "apps": [
+    "winter",
+    "parks",
+    "streetclean",
+    "roadmaint"
+   ],
+   "values": {
+    "body": [
+     "tipper",
+     "plough",
+     "spreader",
+     "sweeper",
+     "mower"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "LADOG E1250",
+   "facts": [
+    "Electric version of the LADOG T1250",
+    "Carries sweeping, winter and mowing implements",
+    "Compact multi-purpose transporter"
+   ]
+  },
+  {
+   "id": "volvo-ecr25-electric",
+   "brand": "Volvo CE",
+   "name": "ECR25 Electric",
+   "categoryId": "excavators",
+   "status": "on-sale",
+   "summary": "2.5 t short-swing compact excavator; the 2025 update doubles the battery to 40 kWh for up to 8 hours of work.",
+   "url": "https://www.volvoce.com/europe/en/about-us/news/2025/revamped-volvo-compact-electric-machines-offer-improved-runtime/",
+   "apps": [
+    "earthmoving",
+    "innercity",
+    "civil",
+    "slopes"
+   ],
+   "values": {
+    "battery_kwh": 40,
+    "runtime_h": 8,
+    "charging": [
+     "type2",
+     "ccs2"
+    ],
+    "op_weight_kg": 2500,
+    "drive": "tracks",
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "bucket"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "ECR25 Electric",
+   "verifiedAt": "2026-09-05",
+   "docs": [
+    {
+     "title": "ECR25 Electric product guide",
+     "kind": "datasheet",
+     "url": "https://example.com/demo/ecr25-electric-product-guide.pdf",
+     "size": "PDF · 2 MB",
+     "lang": "en",
+     "demo": true
+    }
+   ],
+   "facts": [
+    "Up to 8 hours runtime after the 2025 update",
+    "Short-swing design for tight sites",
+    "40 kWh battery"
+   ],
+   "benefits": [
+    "Up to 8 hours of work after the 2025 battery upgrade",
+    "Short-swing design for tight inner-city sites",
+    "Charges from a standard 3-phase grid connection"
+   ],
+   "benefitsDemo": true
+  },
+  {
+   "id": "jcb-19c-1e",
+   "brand": "JCB",
+   "name": "19C-1E",
+   "categoryId": "excavators",
+   "status": "on-sale",
+   "summary": "1.9 t electric mini excavator that works a full day on one charge, quiet enough for indoor and night work.",
+   "url": "https://www.jcb.com/en-US/products/machines/mini-excavators/19c-1e/",
+   "apps": [
+    "earthmoving",
+    "innercity",
+    "civil",
+    "slopes"
+   ],
+   "values": {
+    "battery_kwh": 19.8,
+    "charging": [
+     "socket"
+    ],
+    "voltage": "v48",
+    "op_weight_kg": 1902,
+    "dig_depth_m": 2.82,
+    "drive": "tracks",
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "bucket"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "19C-1E",
+   "docs": [
+    {
+     "title": "19C-1E brochure",
+     "kind": "brochure",
+     "url": "https://www.watling-jcb.com/wp-content/uploads/2021/03/19C-1E-E-BROCHURE.pdf",
+     "lang": "en"
+    }
+   ],
+   "facts": [
+    "Full working day on one charge",
+    "Quiet enough for indoor and night work",
+    "1.9 t operating weight"
+   ]
+  },
+  {
+   "id": "volvo-ec230-electric",
+   "brand": "Volvo CE",
+   "name": "EC230 Electric",
+   "categoryId": "excavators",
+   "status": "on-sale",
+   "summary": "23.5 t crawler excavator with a 450 kWh battery, 7–8 hours of work and 250 kW DC fast charging.",
+   "url": "https://www.volvoce.com/europe/en/about-us/news/2025/updated-volvo-ec230-electric-boasts-full-day-operation/",
+   "apps": [
+    "earthmoving",
+    "roadbuild",
+    "innercity"
+   ],
+   "values": {
+    "battery_kwh": 450,
+    "runtime_h": 8,
+    "dc_kw": 250,
+    "charging": [
+     "ccs2"
+    ],
+    "power_kw": 110,
+    "op_weight_kg": 23500,
+    "drive": "tracks",
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "bucket"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "EC230 Electric",
+   "verifiedAt": "2026-09-05",
+   "docs": [
+    {
+     "title": "EC230 Electric product guide",
+     "kind": "datasheet",
+     "url": "https://example.com/demo/ec230-electric-product-guide.pdf",
+     "size": "PDF · 3 MB",
+     "lang": "en",
+     "demo": true
+    },
+    {
+     "title": "Charging on site: walkaround video",
+     "kind": "video",
+     "url": "https://example.com/demo/ec230-charging-video",
+     "demo": true
+    }
+   ],
+   "facts": [
+    "450 kWh battery",
+    "7–8 hours runtime",
+    "250 kW DC fast charging"
+   ],
+   "benefits": [
+    "A full working day on one charge in typical duty",
+    "Diesel-level digging performance with less noise",
+    "Fast top-up to 80 % in about 1.5 hours at 250 kW"
+   ],
+   "benefitsDemo": true
+  },
+  {
+   "id": "volvo-l25-electric",
+   "brand": "Volvo CE",
+   "name": "L25 Electric",
+   "categoryId": "loaders",
+   "status": "on-sale",
+   "summary": "5 t compact wheel loader; the 2025 update raised standard capacity by 21 % and added a 56 kWh option.",
+   "url": "https://www.volvoce.com/europe/en/about-us/news/2025/revamped-volvo-compact-electric-machines-offer-improved-runtime/",
+   "apps": [
+    "material",
+    "innercity",
+    "parks",
+    "farmyard"
+   ],
+   "values": {
+    "battery_kwh": 56,
+    "op_weight_kg": 5000,
+    "drive": "awd",
+    "eu_class": "SPM",
+    "body": [
+     "bucket",
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "L25 Electric",
+   "facts": [
+    "5 t compact wheel loader",
+    "Optional 56 kWh battery",
+    "Zero exhaust emissions for indoor work"
+   ],
+   "benefits": [
+    "Quiet enough for night shifts and indoor work",
+    "Optional 56 kWh battery for longer shifts"
+   ],
+   "benefitsDemo": true
+  },
+  {
+   "id": "jcb-525-60e",
+   "brand": "JCB",
+   "name": "525-60E Loadall",
+   "categoryId": "telehandlers",
+   "status": "on-sale",
+   "summary": "Compact electric telehandler lifting 2.5 t to 6 m on a 24 kWh, 96 V battery.",
+   "url": "https://www.jcb.com/en-GB/products/machines/telescopic-handlers/525-60e/",
+   "apps": [
+    "material",
+    "farmyard",
+    "innercity",
+    "rental"
+   ],
+   "values": {
+    "battery_kwh": 24,
+    "voltage": "v48",
+    "lift_kg": 2500,
+    "lift_height_m": 6.0,
+    "drive": "awd",
+    "eu_class": "SPM",
+    "body": [
+     "forks",
+     "bucket"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "525-60E Loadall",
+   "docs": [
+    {
+     "title": "525-60E brochure",
+     "kind": "brochure",
+     "url": "https://watling-jcb.com/wp-content/uploads/2026/01/525-60E-E-Brochure-English.pdf",
+     "lang": "en"
+    }
+   ],
+   "facts": [
+    "Lifts 2.5 t to 6 m",
+    "24 kWh, 96 V battery",
+    "Compact telehandler for yards and sites"
+   ]
+  },
+  {
+   "id": "wacker-neuson-dw15e",
+   "brand": "Wacker Neuson",
+   "name": "DW15e",
+   "categoryId": "dumpers",
+   "status": "on-sale",
+   "summary": "1.5 t electric wheel dumper with all-wheel drive, braking energy recovery and overnight charging.",
+   "url": "https://www.wackerneuson.com/cemea/products/dumpers/wheel-dumpers/dw15e",
+   "apps": [
+    "material",
+    "innercity",
+    "slopes"
+   ],
+   "values": {
+    "payload_kg": 1500,
+    "drive": "awd",
+    "charging": [
+     "socket"
+    ],
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "tipper"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "DW15e",
+   "facts": [
+    "1.5 t payload",
+    "All-wheel drive",
+    "Braking energy recovery"
+   ]
+  },
+  {
+   "id": "fendt-e100-vario",
+   "brand": "Fendt",
+   "name": "e100 Vario",
+   "categoryId": "ag-tractors",
+   "status": "on-sale",
+   "summary": "Compact tractor with a 100 kWh battery, 55 kW (66 kW peak), 4–7 hours of partial-load work and 80 kW DC charging.",
+   "url": "https://www.fendt.com/int/fully-electric-tractor-the-fendt-e100-vario",
+   "apps": [
+    "arable",
+    "farmyard",
+    "vine",
+    "parks"
+   ],
+   "values": {
+    "battery_kwh": 100,
+    "runtime_h": 7,
+    "dc_kw": 80,
+    "ac_kw": 22,
+    "charging": [
+     "ccs2",
+     "type2"
+    ],
+    "power_kw": 55,
+    "eu_class": "T",
+    "licence": "B",
+    "body": [
+     "hitch"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "e100 Vario",
+   "facts": [
+    "100 kWh battery",
+    "4–7 hours at partial load",
+    "80 kW DC fast charging"
+   ]
+  },
+  {
+   "id": "weidemann-1190e-b141",
+   "brand": "Weidemann",
+   "name": "Hoftrac 1190e 14.1 kWh",
+   "categoryId": "yard-loaders",
+   "status": "on-sale",
+   "summary": "Electric yard loader with 14.1, 18.7 or 23.4 kWh batteries and separate motors for drive and hydraulics.",
+   "url": "https://www.weidemann.com/uk/products/hoftracs/1190e",
+   "apps": [
+    "farmyard",
+    "material",
+    "parks"
+   ],
+   "values": {
+    "ac_kw": 3,
+    "charging": [
+     "socket"
+    ],
+    "voltage": "v48",
+    "drive": "awd",
+    "eu_class": "SPM",
+    "body": [
+     "bucket",
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 14.1
+   },
+   "updatedAt": "2026-09-26",
+   "family": "Hoftrac 1190e",
+   "facts": [
+    "14.1 kWh standard battery",
+    "Separate motors for drive and hydraulics",
+    "3 kW onboard charger"
+   ]
+  },
+  {
+   "id": "weidemann-1190e-b187",
+   "brand": "Weidemann",
+   "name": "Hoftrac 1190e 18.7 kWh",
+   "categoryId": "yard-loaders",
+   "status": "on-sale",
+   "summary": "Electric yard loader with 14.1, 18.7 or 23.4 kWh batteries and separate motors for drive and hydraulics.",
+   "url": "https://www.weidemann.com/uk/products/hoftracs/1190e",
+   "apps": [
+    "farmyard",
+    "material",
+    "parks"
+   ],
+   "values": {
+    "ac_kw": 3,
+    "charging": [
+     "socket"
+    ],
+    "voltage": "v48",
+    "drive": "awd",
+    "eu_class": "SPM",
+    "body": [
+     "bucket",
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 18.7
+   },
+   "updatedAt": "2026-09-26",
+   "family": "Hoftrac 1190e",
+   "facts": [
+    "18.7 kWh battery option",
+    "Separate motors for drive and hydraulics",
+    "3 kW onboard charger"
+   ]
+  },
+  {
+   "id": "weidemann-1190e-b234",
+   "brand": "Weidemann",
+   "name": "Hoftrac 1190e 23.4 kWh",
+   "categoryId": "yard-loaders",
+   "status": "on-sale",
+   "summary": "Electric yard loader with 14.1, 18.7 or 23.4 kWh batteries and separate motors for drive and hydraulics.",
+   "url": "https://www.weidemann.com/uk/products/hoftracs/1190e",
+   "apps": [
+    "farmyard",
+    "material",
+    "parks"
+   ],
+   "values": {
+    "ac_kw": 3,
+    "charging": [
+     "socket"
+    ],
+    "voltage": "v48",
+    "drive": "awd",
+    "eu_class": "SPM",
+    "body": [
+     "bucket",
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 23.4
+   },
+   "updatedAt": "2026-09-26",
+   "family": "Hoftrac 1190e",
+   "facts": [
+    "23.4 kWh battery, the largest option",
+    "Separate motors for drive and hydraulics",
+    "3 kW onboard charger"
+   ]
+  },
+  {
+   "id": "grator",
+   "brand": "Grator",
+   "name": "Grator slope mower",
+   "categoryId": "slope-mowers",
+   "status": "on-sale",
+   "summary": "60 kg battery robotic mower from Slovenia for slopes up to 70°, remote-controlled, about 2 hours per charge.",
+   "url": "https://grator.com/",
+   "apps": [
+    "slopes",
+    "roadmaint",
+    "parks",
+    "vine"
+   ],
+   "values": {
+    "battery_kwh": 2.1,
+    "runtime_h": 2,
+    "work_width_m": 0.56,
+    "max_slope_deg": 70,
+    "op_weight_kg": 60,
+    "voltage": "v48",
+    "drive": "tracks",
+    "operation": [
+     "remote"
+    ],
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "mower"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "Grator slope mower",
+   "facts": [
+    "Mows slopes up to 70°",
+    "Remote-controlled, operator stays off the slope",
+    "Designed and made in Slovenia"
+   ]
+  },
+  {
+   "id": "terberg-yt203-ev-b310",
+   "brand": "Terberg",
+   "name": "YT203-EV 310 kWh",
+   "categoryId": "terminal",
+   "status": "on-sale",
+   "summary": "Electric terminal tractor for ports and distribution yards, now offered with 155 or 310 kWh LFP batteries.",
+   "url": "https://www.terbergspecialvehicles.com/en/news/terberg-showcases-enhanced-yt203ev-electric-terminal-tractor-at-toc-europe-in-hamburg",
+   "apps": [
+    "port",
+    "regional",
+    "industrialsite"
+   ],
+   "values": {
+    "chemistry": "lfp",
+    "eu_class": "SPM",
+    "body": [
+     "fifth"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 310
+   },
+   "updatedAt": "2026-09-26",
+   "family": "YT203-EV",
+   "facts": [
+    "310 kWh LFP battery",
+    "Terminal tractor for ports and distribution yards",
+    "Enhanced version shown at TOC Europe 2026"
+   ]
+  },
+  {
+   "id": "terberg-yt203-ev-b155",
+   "brand": "Terberg",
+   "name": "YT203-EV 155 kWh",
+   "categoryId": "terminal",
+   "status": "on-sale",
+   "summary": "Electric terminal tractor for ports and distribution yards, now offered with 155 or 310 kWh LFP batteries.",
+   "url": "https://www.terbergspecialvehicles.com/en/news/terberg-showcases-enhanced-yt203ev-electric-terminal-tractor-at-toc-europe-in-hamburg",
+   "apps": [
+    "port",
+    "regional",
+    "industrialsite"
+   ],
+   "values": {
+    "chemistry": "lfp",
+    "eu_class": "SPM",
+    "body": [
+     "fifth"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "battery_kwh": 155
+   },
+   "updatedAt": "2026-09-26",
+   "family": "YT203-EV",
+   "facts": [
+    "155 kWh LFP battery for lighter duty",
+    "Terminal tractor for ports and distribution yards",
+    "Enhanced version shown at TOC Europe 2026"
+   ]
+  },
+  {
+   "id": "kalmar-ecg180-330",
+   "brand": "Kalmar",
+   "name": "Electric heavy forklift ECG180–330",
+   "categoryId": "forklifts",
+   "status": "on-sale",
+   "summary": "Heavy forklift for 18–33 t loads with 163, 245 or 392 kWh Li-ion batteries and 50–350 kW charging.",
+   "url": "https://www.kalmarglobal.com/equipment/forklift-trucks/electric-heavy-forklift-18-33-ton/",
+   "apps": [
+    "port",
+    "industrialsite",
+    "warehouse"
+   ],
+   "values": {
+    "battery_kwh": 392,
+    "dc_kw": 350,
+    "lift_kg": 33000,
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "Electric heavy forklift ECG180–330",
+   "facts": [
+    "Lifts 18 to 33 t",
+    "163, 245 or 392 kWh batteries",
+    "50–350 kW charging"
+   ]
+  },
+  {
+   "id": "linde-x35-x20",
+   "brand": "Linde Material Handling",
+   "name": "X20",
+   "categoryId": "forklifts",
+   "status": "on-sale",
+   "summary": "Electric counterbalance trucks from 2.0 to 3.5 t, built to replace diesel forklifts outdoors; 90 V, 22 km/h.",
+   "url": "https://www.linde-mh.com/en/Products/E-Trucks/X20-X35/",
+   "apps": [
+    "warehouse",
+    "industrialsite",
+    "port"
+   ],
+   "values": {
+    "battery_kwh": 54,
+    "voltage": "v48",
+    "top_speed": 22,
+    "lift_height_m": 3.1,
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "lift_kg": 2000
+   },
+   "updatedAt": "2026-09-26",
+   "family": "X20–X35",
+   "facts": [
+    "2.0 t load capacity",
+    "Built to replace diesel forklifts outdoors",
+    "90 V system, 22 km/h"
+   ]
+  },
+  {
+   "id": "linde-x35-x25",
+   "brand": "Linde Material Handling",
+   "name": "X25",
+   "categoryId": "forklifts",
+   "status": "on-sale",
+   "summary": "Electric counterbalance trucks from 2.0 to 3.5 t, built to replace diesel forklifts outdoors; 90 V, 22 km/h.",
+   "url": "https://www.linde-mh.com/en/Products/E-Trucks/X20-X35/",
+   "apps": [
+    "warehouse",
+    "industrialsite",
+    "port"
+   ],
+   "values": {
+    "battery_kwh": 54,
+    "voltage": "v48",
+    "top_speed": 22,
+    "lift_height_m": 3.1,
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "lift_kg": 2500
+   },
+   "updatedAt": "2026-09-26",
+   "family": "X20–X35",
+   "facts": [
+    "2.5 t load capacity",
+    "Built to replace diesel forklifts outdoors",
+    "90 V system, 22 km/h"
+   ]
+  },
+  {
+   "id": "linde-x35-x30",
+   "brand": "Linde Material Handling",
+   "name": "X30",
+   "categoryId": "forklifts",
+   "status": "on-sale",
+   "summary": "Electric counterbalance trucks from 2.0 to 3.5 t, built to replace diesel forklifts outdoors; 90 V, 22 km/h.",
+   "url": "https://www.linde-mh.com/en/Products/E-Trucks/X20-X35/",
+   "apps": [
+    "warehouse",
+    "industrialsite",
+    "port"
+   ],
+   "values": {
+    "battery_kwh": 54,
+    "voltage": "v48",
+    "top_speed": 22,
+    "lift_height_m": 3.1,
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "lift_kg": 3000
+   },
+   "updatedAt": "2026-09-26",
+   "family": "X20–X35",
+   "facts": [
+    "3.0 t load capacity",
+    "Built to replace diesel forklifts outdoors",
+    "90 V system, 22 km/h"
+   ]
+  },
+  {
+   "id": "linde-x35-x35",
+   "brand": "Linde Material Handling",
+   "name": "X35",
+   "categoryId": "forklifts",
+   "status": "on-sale",
+   "summary": "Electric counterbalance trucks from 2.0 to 3.5 t, built to replace diesel forklifts outdoors; 90 V, 22 km/h.",
+   "url": "https://www.linde-mh.com/en/Products/E-Trucks/X20-X35/",
+   "apps": [
+    "warehouse",
+    "industrialsite",
+    "port"
+   ],
+   "values": {
+    "battery_kwh": 54,
+    "voltage": "v48",
+    "top_speed": 22,
+    "lift_height_m": 3.1,
+    "eu_class": "SPM",
+    "licence": "none",
+    "body": [
+     "forks"
+    ],
+    "operation": [
+     "onboard"
+    ],
+    "lift_kg": 3500
+   },
+   "updatedAt": "2026-09-26",
+   "family": "X20–X35",
+   "facts": [
+    "3.5 t load capacity",
+    "Built to replace diesel forklifts outdoors",
+    "90 V system, 22 km/h"
+   ]
+  },
+  {
+   "id": "mulag-comet-4e",
+   "brand": "MULAG",
+   "name": "Comet 4E",
+   "categoryId": "tow-tractors",
+   "status": "on-sale",
+   "summary": "Airport towing tractor with 20 kN drawbar pull, towing 11.5 t at 30 km/h or 35 t at walking pace.",
+   "url": "https://www.mulag.de/en/ground-support-equipment/products/towing-tractors/comet-4e/",
+   "apps": [
+    "airport",
+    "industrialsite"
+   ],
+   "values": {
+    "battery_kwh": 74,
+    "voltage": "v48",
+    "power_kw": 30,
+    "top_speed": 30,
+    "towing_kg": 35000,
+    "eu_class": "SPM",
+    "operation": [
+     "onboard"
+    ]
+   },
+   "updatedAt": "2026-09-26",
+   "family": "Comet 4E",
+   "facts": [
+    "20 kN drawbar pull",
+    "Tows 11.5 t at 30 km/h or 35 t at walking pace",
+    "30 kW motor"
+   ]
+  }
+ ],
+ "partners": [
+  {
+   "brand": "Kia",
+   "tier": "pro",
+   "demo": true,
+   "validUntil": "2027-09-30",
+   "contact": {
+    "name": "Laura Demo-Weber",
+    "role": "Fleet & PBV Sales",
+    "region": "Germany",
+    "email": "laura.weber@kia-demo.example",
+    "phone": "+49 000 0000 0001"
+   }
+  },
+  {
+   "brand": "Volvo CE",
+   "tier": "pro",
+   "demo": true,
+   "validUntil": "2027-09-30",
+   "contact": {
+    "name": "Erik Demo",
+    "role": "Electric Machines Specialist",
+    "region": "DACH",
+    "email": "erik.demo@volvoce-demo.example",
+    "phone": "+49 000 0000 0002"
+   }
+  },
+  {
+   "brand": "Goupil",
+   "tier": "starter",
+   "demo": true,
+   "validUntil": "2027-09-30",
+   "contact": {
+    "name": "Marc Exemple",
+    "role": "Key Account Municipalities",
+    "region": "Germany & Benelux",
+    "email": "marc.exemple@goupil-demo.example",
+    "phone": "+33 0 00 00 00 03"
+   }
+  }
+ ],
+ "settings": {
+  "contactEmail": ""
+ },
+ "statuses": [
+  {
+   "id": "on-sale",
+   "label": "On sale"
+  },
+  {
+   "id": "orders-open",
+   "label": "Order books open"
+  },
+  {
+   "id": "announced",
+   "label": "Announced"
+  },
+  {
+   "id": "discontinued",
+   "label": "Discontinued"
+  }
+ ]
+}
