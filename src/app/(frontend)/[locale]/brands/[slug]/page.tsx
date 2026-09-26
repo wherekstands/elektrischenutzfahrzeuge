@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: pathFor(locale, href.brand(slug)),
     alternates: await alternates((c, l) => (c.brandById.has(brand.id) ? pathFor(l, href.brand(slug)) : null)),
     noindex: count === 0,
+    images: [{ url: absolute(`/og/${locale}/brands/${slug}`), width: 1200, height: 630, alt: brand.name }],
   })
 }
 

@@ -64,6 +64,8 @@ export function buildMetadata(m: PageMeta): Metadata {
   const xDefault = alternates[DEFAULT_LOCALE] ?? Object.values(alternates)[0]
   if (xDefault && !m.noindex) languages['x-default'] = absolute(xDefault)
   const description = truncate(m.description, DESCRIPTION_MAX)
+  // Default share image; vehicle and brand pages override it with their own opengraph-image files.
+  const images = m.images ?? [{ url: absolute(`/og/${m.locale}/default`), width: 1200, height: 630, alt: SITE_NAME }]
 
   return {
     title: { absolute: m.title },
@@ -84,10 +86,10 @@ export function buildMetadata(m: PageMeta): Metadata {
       alternateLocale: Object.keys(alternates)
         .filter((l) => l !== m.locale)
         .map((l) => OG_LOCALE[l as Locale]),
-      ...(m.images ? { images: m.images } : {}),
+      images,
       ...(m.publishedTime ? { publishedTime: m.publishedTime } : {}),
       ...(m.modifiedTime ? { modifiedTime: m.modifiedTime } : {}),
     },
-    twitter: { card: 'summary_large_image', title: m.title, description, ...(m.images ? { images: m.images.map((i) => i.url) } : {}) },
+    twitter: { card: 'summary_large_image', title: m.title, description, images: images.map((i) => i.url) },
   }
 }

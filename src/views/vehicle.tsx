@@ -90,7 +90,10 @@ export async function vehicleMetadata(locale: Locale, slug: string): Promise<Met
   if (!listing) return {}
   const { title, description } = await vehicleTitleAndDescription(listing, catalog, locale)
   const path = pathFor(locale, href.vehicle(slug))
-  const image = listing.images[0]?.sizes.og
+  const photo = listing.images[0]?.sizes.og
+  const image = photo
+    ? { url: absolute(photo.url), width: photo.width, height: photo.height, alt: listing.title }
+    : { url: absolute(`/og/${locale}/vehicles/${slug}`), width: 1200, height: 630, alt: listing.title }
   return buildMetadata({
     locale,
     title,
@@ -100,7 +103,7 @@ export async function vehicleMetadata(locale: Locale, slug: string): Promise<Met
     noindex: Boolean(listing.seo.noindex),
     markdownPath: markdownPath(locale, slug),
     modifiedTime: listing.updatedAt,
-    ...(image ? { images: [{ url: absolute(image.url), width: image.width, height: image.height, alt: listing.title }] } : {}),
+    images: [image],
   })
 }
 
@@ -225,7 +228,7 @@ export async function VehicleView({ locale, slug }: { locale: Locale; slug: stri
             locale,
             path,
             brandPath: pathFor(locale, href.brand(brand.slug)),
-            imageUrls: listing.images.length ? listing.images.map((i) => i.sizes.large?.url ?? i.url) : [`${path}/opengraph-image`],
+            imageUrls: listing.images.length ? listing.images.map((i) => i.sizes.large?.url ?? i.url) : [`/og/${locale}/vehicles/${listing.slug}`],
             labels,
             netPriceNote: t('priceNet'),
           }),

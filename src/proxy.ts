@@ -53,6 +53,6 @@ export const config = {
   matcher: [
     // Everything except API, admin, Next internals, preview/markdown internals and static files.
     // `.md` is deliberately not excluded (Markdown twins).
-    '/((?!api|admin|_next|_vercel|next/|md/|.*\\.(?:xml|txt|json|ico|png|jpe?g|svg|webp|avif|gif|woff2?|ttf|css|js|map|webmanifest|csv|pdf)$).*)',
+    '/((?!api|admin|_next|_vercel|next/|md/|og/|.*\\.(?:xml|txt|json|ico|png|jpe?g|svg|webp|avif|gif|woff2?|ttf|css|js|map|webmanifest|csv|pdf)$).*)',
   ],
 }

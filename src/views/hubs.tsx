@@ -18,7 +18,7 @@ import type { JobNode, Listing, SpecDef, TypeNode } from '@/lib/catalog/types'
 import { MIN_LISTINGS_TO_INDEX_COMBO, MIN_LISTINGS_TO_INDEX_HUB } from '@/lib/constants'
 import { breadcrumbLd, collectionPageLd, faqLd } from '@/lib/seo/jsonld'
 import { buildMetadata, fitTitle, fitTitleCandidates } from '@/lib/seo/metadata'
-import { href, pathFor } from '@/lib/urls'
+import { absolute, href, pathFor } from '@/lib/urls'
 
 import { alternates, lcFirst } from './shared'
 
@@ -216,6 +216,7 @@ export async function typeHubMetadata(locale: Locale, segments: string[], filter
       return pathFor(l, href.type(type, l, job))
     }),
     noindex: filtered || r.scope.length < minimum || Boolean(seo.noindex),
+    images: [{ url: absolute(`/og/${locale}/types/${segments.join('/')}`), width: 1200, height: 630, alt: title }],
   })
 }
 
