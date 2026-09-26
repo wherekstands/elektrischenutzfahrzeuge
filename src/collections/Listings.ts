@@ -8,7 +8,7 @@ import { queuePartnerDraft } from '@/hooks/partnerReview'
 import { recordRedirect } from '@/hooks/redirects'
 import { revalidateAfterChange, revalidateAfterDelete } from '@/hooks/revalidate'
 import { DOCUMENT_KINDS, HIGHLIGHT_MAX_CHARS, STATUSES } from '@/lib/constants'
-import { pingIndexNow } from '@/lib/indexnow'
+import { schedulePing } from '@/lib/indexnow'
 import { normalizeSpecValues, type SpecRule } from '@/lib/specs/normalize'
 import { requiredInDefaultLocale } from '@/fields/validators'
 
@@ -115,7 +115,7 @@ export const Listings: CollectionConfig = {
         if (published && previousDoc?.slug && previousDoc.slug !== doc.slug && previousDoc._status === 'published') {
           await recordRedirect(req, `/vehicles/${previousDoc.slug}`, `/vehicles/${doc.slug}`, 'Listing slug changed')
         }
-        if (published) void pingIndexNow([`/en/vehicles/${doc.slug}`])
+        if (published) await schedulePing([`/en/vehicles/${doc.slug}`])
         return doc
       },
       queuePartnerDraft('listing'),

@@ -25,3 +25,17 @@ export async function pingIndexNow(paths: string[]): Promise<void> {
     // Best effort: sitemaps remain the source of truth.
   }
 }
+
+/**
+ * Ping after the response is sent. On serverless platforms a floating promise can be cut off when the
+ * function returns; `after()` keeps it alive. Outside a Next.js request (CLI, seed) it just runs.
+ */
+export async function schedulePing(paths: string[]): Promise<void> {
+  if (!IS_PRODUCTION_DEPLOYMENT || !INDEXNOW_KEY || paths.length === 0) return
+  try {
+    const { after } = await import('next/server')
+    after(() => pingIndexNow(paths))
+  } catch {
+    void pingIndexNow(paths)
+  }
+}
