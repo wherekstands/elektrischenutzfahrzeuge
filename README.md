@@ -39,7 +39,7 @@ pnpm dev                        # http://localhost:3000/en and http://localhost:
 |---|---|
 | `pnpm dev` | Development server |
 | `pnpm build` / `pnpm start` | Production build / server |
-| `pnpm ci` | `migrate` + `build` (Vercel build command) |
+| `pnpm ci` | `migrate` + initial data if the database is empty and `SEED_ON_BUILD` is set + `build` (Vercel build command) |
 | `pnpm migrate` | Apply database migrations (`src/migrations`) |
 | `pnpm migrate:create <name>` | Create a migration after changing collections or fields |
 | `pnpm generate:types` / `generate:importmap` | Regenerate Payload types / admin import map |

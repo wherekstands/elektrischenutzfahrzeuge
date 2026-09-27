@@ -47,6 +47,11 @@ pnpm seed           # 2a. production: taxonomy, specs, reference listings, pages
 pnpm seed:demo      # 2b. development project only: the same plus fictional demo partners
 ```
 
+**Or let the Vercel build do it:** set `SEED_ON_BUILD=demo` (development/preview) or `SEED_ON_BUILD=real`
+(production) in Vercel. The build command (`pnpm run ci`) then runs migrations, loads the initial data
+**only if the database has no listings**, and builds. Demo data is refused on production. You can
+remove the variable after the first successful deployment.
+
 Order matters: migrations first, then the seed. Schema "push" only runs against a local database, so
 seeding a Supabase project never changes its tables (a push there would make the next migration stop at
 an interactive prompt). If you seed after a deployment, redeploy so static pages are rebuilt with data.
@@ -64,6 +69,8 @@ in production.
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://elektrischenutzfahrzeuge.de` | leave empty (canonical falls back to the production domain; previews are noindex anyway) |
 | `NEXT_PUBLIC_SITE_NAME` | `ECV Base` | same |
+| `ENABLE_EXPERIMENTAL_COREPACK` | `1` (Vercel then uses the exact pnpm version from `package.json`) | `1` |
+| `SEED_ON_BUILD` | `real` for the first deployment only | `demo` |
 | `NEXT_PUBLIC_LOCALES` | `en` (later `en,de`) | same or `en,de` to test German |
 | `PAYLOAD_SECRET` | long random string (different per environment) | long random string |
 | Database, storage | production Supabase project | development Supabase project |

@@ -10,7 +10,7 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=4096\" next build",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "ci": "pnpm run migrate && pnpm run build",
+    "ci": "pnpm run migrate && node scripts/seed-on-build.mjs && pnpm run build",
     "migrate": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_MIGRATING=true payload migrate",
     "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_MIGRATING=true payload migrate:create",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",

@@ -5,17 +5,22 @@
  *   pnpm seed          real data only (safe for production: no fictional partners)
  *   pnpm seed:demo     adds the fictional demo partners, contacts, benefits, documents and placements
  *   pnpm seed --fresh  deletes catalogue content first (never use on production)
+ *   --if-empty         do nothing when listings exist (used by the Vercel build, scripts/seed-on-build.mjs)
  *
  * The script is idempotent: taxonomy, specs, brands and listings are matched by key/slug and updated.
  */
 import './load-env'
+
+// Keep the config import before @payloadcms/richtext-lexical: the other order makes module loading
+// stall at random (a top-level await in the dependency cycle never settles) and Node then exits with
+// code 0 without running the seed.
+import config from '../src/payload.config'
 
 import { convertMarkdownToLexical, editorConfigFactory } from '@payloadcms/richtext-lexical'
 import fs from 'node:fs'
 import path from 'node:path'
 import { getPayload, type Payload } from 'payload'
 
-import config from '../src/payload.config'
 import { GUIDES } from './seed/guides'
 import { COMBOS, JOB_CONTENT, TYPE_CONTENT } from './seed/hubs'
 import { PAGES } from './seed/pages'
@@ -25,6 +30,8 @@ import { JOBS, TYPES, type SeedJob, type SeedType } from './seed/taxonomy'
 const args = new Set(process.argv.slice(2))
 const DEMO = args.has('--demo')
 const FRESH = args.has('--fresh')
+const IF_EMPTY = args.has('--if-empty')
+const PRODUCTION = process.env.VERCEL_ENV === 'production' || process.env.SITE_ENV === 'production'
 const ctx = { skipRevalidate: true }
 
 type Ref = { id: number }
@@ -251,14 +258,33 @@ async function upsert(
 let editorConfig: Awaited<ReturnType<typeof editorConfigFactory.default>>
 const md = (markdown: string) => convertMarkdownToLexical({ editorConfig, markdown: markdown.trim() })
 
+/** Exit after stdout/stderr are flushed; a bare process.exit() can drop the last lines in CI logs. */
+async function exit(code: number): Promise<never> {
+  await new Promise<void>((resolve) => process.stdout.write('', () => resolve()))
+  await new Promise<void>((resolve) => process.stderr.write('', () => resolve()))
+  process.exit(code)
+}
+
 // ─── main ───────────────────────────────────────────────────────────────────────────────────
 async function main() {
   const payload = await getPayload({ config })
   editorConfig = await editorConfigFactory.default({ config: payload.config })
   const log = (msg: string) => console.log(`[seed] ${msg}`)
 
+  // Demo partners are fictional and must never reach production.
+  if (DEMO && PRODUCTION) throw new Error('Refusing --demo on production')
+
+  if (IF_EMPTY) {
+    const { totalDocs } = await payload.count({ collection: 'listings', overrideAccess: true })
+    if (totalDocs > 0) {
+      log(`Database already has ${totalDocs} listings; nothing to do (--if-empty).`)
+      await exit(0)
+    }
+    log('Empty database: loading initial data.')
+  }
+
   if (FRESH) {
-    if (process.env.VERCEL_ENV === 'production' || process.env.SITE_ENV === 'production') {
+    if (PRODUCTION) {
       throw new Error('Refusing --fresh on production')
     }
     log('Deleting catalogue content (--fresh)…')
@@ -659,10 +685,10 @@ async function main() {
   }
 
   log(`Done${DEMO ? ' (with demo partner data)' : ''}.`)
-  process.exit(0)
+  await exit(0)
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error(err)
-  process.exit(1)
+  await exit(1)
 })
